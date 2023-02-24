@@ -1,0 +1,57 @@
+{
+    "products": {
+        "chair": [
+            {
+                "name": "Sky Chair",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Wood from sustainable sources",
+                "date_created": "December 2021",
+                "price": "$120",
+                "images": [
+                    {
+                        "src": "./assets/chairs/scaun albastru 1.jpg",
+                        "alt": "side view of our sustainable wooden sky-colored Sky Chair"
+                    },
+                    {
+                        "src": "./assets/chairs/scaun albastru 2.jpg",
+                        "alt": "front view of our sustainable wooden sky-colored Sky Chair"
+                    },
+                    {
+                        "src": "./assets/chairs/scaun albastru 3.jpg",
+                        "alt": "back view of our sustainable wooden sky-colored Sky Chair"
+                    }
+                ]
+            },
+            {
+                "name": "Future Chair",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Wood from sustainable sources",
+                "date_created": "December 2021",
+                "price": "$120",
+                "images": [
+                    {
+                        "src": "./assets/chairs/scaun galben 1.jpg",
+                        "alt": "side view of our sustainable wooden dark yellow Future Chair"
+                    },
+                    {
+                        "src": "./assets/chairs/scaun galben 2.jpg",
+                        "alt": "front view of our sustainable wooden dark yellow Future Chair"
+                    },
+                    {
+                        "src": "./assets/chairs/scaun galben 3.jpg",
+                        "alt": "back view of our sustainable wooden dark yellow Future Chair"
+                    }
+                ]
+            }
+        ],
+        "sofa": [
+            
+        ],
+        "table": [
+
+        ],
+        "vase": [
+
+        ]
+    }
+}
