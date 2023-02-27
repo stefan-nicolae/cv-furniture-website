@@ -152,4 +152,12 @@ activateSlider(
     document.querySelector(".testimonials .left-arrow"), 
     document.querySelector(".testimonials .right-arrow")
 )
+          
+if(sessionStorage.getItem("popup-closed") === "true") {
+    document.querySelector(".popup").style.display = "none"
+}
 
+document.querySelector(".popup #close").addEventListener("click", e => {
+    sessionStorage.setItem("popup-closed", "true")
+    e.currentTarget.parentElement.style.display = "none"
+})

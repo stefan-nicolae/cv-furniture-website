@@ -358,6 +358,47 @@ section.testimonials .testimonial .page2-content-back span {
     color: var(--dark-gray)
 }
 
+.popup {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: var(--light-green);
+    color: white;
+    padding: 24px;
+    width: 320px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(28, 28, 28, 0.3)
+}
+
+.popup h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.popup:hover {
+    background-color: rgb(225, 200, 204);
+    color: var(--dark-gray);
+}
+
+.popup span {
+    font-size: 12px;
+}
+
+.popup span#close {
+    position: absolute; 
+    top: 2px;
+    right: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup span#close:hover
+{
+    color: rgb(193, 227, 249)
+}
+
 @media only screen and (min-width: 601px) and (max-width: 992px) {
     .dynamic-product-list {
         min-width: 320px !important;

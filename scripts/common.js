@@ -24,7 +24,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
             left: scrollWidth,
             behavior: "smooth"
         })
-    })
+    });
 
     leftArrow.addEventListener("click", e => {
         if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
@@ -32,46 +32,45 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
             left: -scrollWidth,
             behavior: "smooth"
         })
-    })
+    });
 
     let isDown = false, startX, scrollLeft
 
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true
-        slider.classList.add("active")
-        startX = e.pageX - slider.offsetLeft
-        scrollLeft = slider.scrollLeft
-        e.preventDefault()
-    })
+    ['mousedown', 'ontouchstart'].forEach(evt => {
+        slider.addEventListener(evt, e => {
+            isDown = true
+            slider.classList.add("active")
+            startX = e.pageX - slider.offsetLeft
+            scrollLeft = slider.scrollLeft
+            e.preventDefault()
+        })
+    });
 
-    slider.addEventListener('mouseleave', () => {
-        isDown = false
-        slider.classList.remove("active")
-    })
+    ['mouseleave', 'ontouchleave'].forEach(evt=> {
+        slider.addEventListener(evt, e => {
+            isDown = false
+            slider.classList.remove("active")
+        });
+    });
 
-    slider.addEventListener('mouseup', e => {
-        isDown = false
-        slider.classList.remove("active")
-        if(snap) {
-            const delta = slider.scrollLeft%e.currentTarget.clientWidth
-            if(delta <= e.currentTarget.clientWidth/2) slider.scrollBy({
-                left: -delta,
-                behavior: "smooth"
-            }) 
-            else slider.scrollBy({
-                left: -delta + e.currentTarget.clientWidth,
-                behavior: "smooth"
-            }) 
-        }
-    })
 
-    slider.addEventListener('mousemove', (e) => {
-        if(!isDown) return
-        e.preventDefault()
-        const x = e.pageX - slider.offsetLeft
-        const walk = (x - startX) * 2
-        slider.scrollLeft = scrollLeft - walk
-    })
+    ['mouseup', 'ontouchend', 'ontouchcancel'].forEach(evt => {
+        slider.addEventListener(evt, e => {
+            isDown = false
+            slider.classList.remove("active")
+            if(snap) {
+                const delta = slider.scrollLeft%e.currentTarget.clientWidth
+                if(delta <= e.currentTarget.clientWidth/2) slider.scrollBy({
+                    left: -delta,
+                    behavior: "smooth"
+                }) 
+                else slider.scrollBy({
+                    left: -delta + e.currentTarget.clientWidth,
+                    behavior: "smooth"
+                }) 
+            }
+        });
+    });
 
     slider.addEventListener("scroll", e => {
         if(snap && tracker) {
@@ -79,7 +78,21 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
             for(const child of tracker.children) { child.style.backgroundColor = "unset" }
             tracker.children[index].style.backgroundColor = "black"
         }
-    })
+    });
+
+    ['mousemove', 'ontouchmove'].forEach(evt => {
+        slider.addEventListener(evt, e => {
+            if(!isDown) return
+            e.preventDefault()
+            const x = e.pageX - slider.offsetLeft
+            const walk = (x - startX) * 2
+            slider.scrollLeft = scrollLeft - walk
+        })
+    });
+
+    slider.addEventListener('dbclick', e => {
+        console.log(e)
+    });
 }
 
 export function openProduct(category, name) {
