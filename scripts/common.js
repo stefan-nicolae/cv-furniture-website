@@ -6,23 +6,20 @@ export async function loadProducts() {
 }
 
 export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, snap=false, tracker=undefined) {
+    document.querySelectorAll(".scroll-div img").forEach(img => {
+        img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
+    })
     if(tracker) tracker.children[0].style.backgroundColor = "black"
     if(snap) {
         window.onresize = () => {
-            if(window.outerWidth <= 992) {
-                document.querySelectorAll(".scroll-div img").forEach(img => {
-                    img.style.width = window.innerWidth + "px"
-                })
-            } else {
-                
-            }
-            
+            document.querySelectorAll(".scroll-div img").forEach(img => {
+                img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
+            })
         }
     }
 
     rightArrow.addEventListener("click", e => {
-        if(snap) scrollWidth = window.innerWidth
-        console.log(scrollWidth)
+        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         slider.scrollBy({
             left: scrollWidth,
             behavior: "smooth"
@@ -53,7 +50,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
     })
 
     slider.addEventListener('mouseup', e => {
-        console.log('mouse up')
         isDown = false
         slider.classList.remove("active")
         if(snap) {
