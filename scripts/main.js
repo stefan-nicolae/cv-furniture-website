@@ -1,4 +1,4 @@
-import { loadProducts, activateSlider } from "./common.js"
+import { loadProducts, activateSlider, openProduct } from "./common.js"
 
 const dynamicProductList = document.querySelector("div.dynamic-product-list")
 const dynamicProductListWrapper = document.querySelector("div.dynamic-product-list .wrapper")
@@ -49,12 +49,13 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
             PRODUCTS[dynamicProductList.classList[1]].forEach(product => {
                 const productElement = 
                     `<div class="dyn-list-product" data-name=${product.name.replaceAll(" ", "_")} data-category=${dynamicProductList.classList[1]}>
-                        <img src="${product.images[0].src}">
+                        <img src="${product.images[0].src}" alt="Thumbnail of ${product.name}">
                         <div class="info">
                             <h4>${product.name}</h4>
                             <span>${product.materials}</span>
                             <span class="price">${product.price}</span>
                         </div>
+                        <a></a>
                     </div>`
                 dynListSection.innerHTML += productElement
             })
@@ -80,10 +81,8 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
                 if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
             }
 
-            document.querySelectorAll(".dyn-list-product").forEach((product) => {
-                product.addEventListener('click', e => {
-                    openProduct(e.currentTarget.dataset.category, e.currentTarget.dataset.name)
-                })
+            document.querySelectorAll(".dyn-list-product a").forEach((link) => {
+                link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
             })
         }
     })
@@ -147,13 +146,6 @@ butterfly.addEventListener("mouseenter", e => {
         fill: "forwards"
     })
 })
-
-function openProduct(category, name) {
-    let url = new URL("/product.html" , "http://" + window.location.host)
-    url.searchParams.append('category', category)
-    url.searchParams.append('name', name)
-    window.location.href = url.href
-}
 
 activateSlider(
     document.querySelector(".testimonials .testimonials-scroll"), 

@@ -102,6 +102,19 @@ header .dyn-list-product {
     display: flex;
     margin-bottom: 8px;
     cursor: pointer;
+    position: relative;
+}
+
+header .dyn-list-product a {
+    background-color: red;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 1;
 }
 
 header .dyn-list-product:hover {

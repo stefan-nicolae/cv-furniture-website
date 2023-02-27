@@ -81,3 +81,10 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
         }
     })
 }
+
+export function openProduct(category, name) {
+    let url = new URL("/product.html" , "http://" + window.location.host)
+    url.searchParams.append('category', category)
+    url.searchParams.append('name', name)
+    return url.href
+}
