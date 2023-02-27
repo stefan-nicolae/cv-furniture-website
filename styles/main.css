@@ -96,6 +96,7 @@ header .dynamic-product-list .wrapper .title {
 header .dynamic-product-list .close {
     position: absolute;
     cursor: pointer;
+    z-index: 2;
 }   
 
 header .dyn-list-product {

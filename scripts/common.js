@@ -36,17 +36,18 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
 
     let isDown = false, startX, scrollLeft
 
-    ['mousedown', 'ontouchstart'].forEach(evt => {
+    ['mousedown', 'touchstart'].forEach(evt => {
         slider.addEventListener(evt, e => {
             isDown = true
             slider.classList.add("active")
-            startX = e.pageX - slider.offsetLeft
+            let cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
+            startX = cursorX - slider.offsetLeft
             scrollLeft = slider.scrollLeft
             e.preventDefault()
         })
     });
 
-    ['mouseleave', 'ontouchleave'].forEach(evt=> {
+    ['mouseleave', 'touchleave'].forEach(evt=> {
         slider.addEventListener(evt, e => {
             isDown = false
             slider.classList.remove("active")
@@ -54,7 +55,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
     });
 
 
-    ['mouseup', 'ontouchend', 'ontouchcancel'].forEach(evt => {
+    ['mouseup', 'touchend'].forEach(evt => {
         slider.addEventListener(evt, e => {
             isDown = false
             slider.classList.remove("active")
@@ -72,26 +73,23 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
         });
     });
 
+    ['mousemove', 'touchmove'].forEach(evt => {
+        slider.addEventListener(evt, e => {
+            let cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
+            if(!isDown) return
+            e.preventDefault()
+            const x = cursorX - slider.offsetLeft
+            const walk = (x - startX) * 2
+            slider.scrollLeft = scrollLeft - walk
+        })
+    });
+    
     slider.addEventListener("scroll", e => {
         if(snap && tracker) {
             const index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
             for(const child of tracker.children) { child.style.backgroundColor = "unset" }
             tracker.children[index].style.backgroundColor = "black"
         }
-    });
-
-    ['mousemove', 'ontouchmove'].forEach(evt => {
-        slider.addEventListener(evt, e => {
-            if(!isDown) return
-            e.preventDefault()
-            const x = e.pageX - slider.offsetLeft
-            const walk = (x - startX) * 2
-            slider.scrollLeft = scrollLeft - walk
-        })
-    });
-
-    slider.addEventListener('dbclick', e => {
-        console.log(e)
     });
 }
 
