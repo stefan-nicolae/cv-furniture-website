@@ -139,7 +139,13 @@ setInterval(() => {
 }, 70)
 
 butterfly.addEventListener("mouseenter", e => {
-    butterfly.style.top = parseFloat(getButterflyProperty("top")) + getButterflyDelta(50, 1) + "px"
+    butterfly.animate([
+        {transform: `translateY(${parseFloat(getButterflyProperty("top")) + getButterflyDelta(50, 1) - 200 + "px"})`}
+    ], {
+        duration: 500,
+        easing: "ease-in",
+        fill: "forwards"
+    })
 })
 
 function openProduct(category, name) {
@@ -154,3 +160,4 @@ activateSlider(
     document.querySelector(".testimonials .left-arrow"), 
     document.querySelector(".testimonials .right-arrow")
 )
+

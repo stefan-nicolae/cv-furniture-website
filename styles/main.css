@@ -1,26 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-:root {
-    --gray: rgb(219, 219, 219);
-    --dark-gray: rgb(42, 42, 42);
-    --light-green: #9AABA2;
-    --orange: #D09E34;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    overflow-x: hidden;
-}
-
 header {
     display: flex;
     flex-direction: column;
-    margin: -8px;
+    margin-bottom: -8px;
     position: relative;
 }
 
@@ -31,7 +12,6 @@ header img {
 header #butterfly {
     position: absolute;
     display: block;
-    top: 50%;
 }
 
 header #butterfly img {
@@ -124,6 +104,10 @@ header .dyn-list-product {
     cursor: pointer;
 }
 
+header .dyn-list-product:hover {
+    color: var(--gray);
+}
+
 header .dyn-list-product .info {
     padding-left: 8px;
     display: flex;
@@ -146,6 +130,12 @@ header nav {
     position: absolute;
     right: 0;
     top: 16px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(64, 64, 64, 0.3);
+    padding-left: 24px;
+    padding-top: 8px;
+    border-radius: 8px 0 0 8px;
 }
 
 header nav a {
@@ -156,6 +146,29 @@ header nav a {
 
 header nav a:hover {
     color: var(--light-green);
+}
+
+header nav a#about-us {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 32px;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+header nav a#about-us iconify-icon {
+    margin-bottom: -4px;
+    margin-left: 8px;
+}
+
+header nav a#about-us:hover {
+    color: white;
+}
+
+header nav a#about-us:hover iconify-icon {
+    margin-bottom: -8px;
 }
 
 header .header-title {
@@ -174,6 +187,13 @@ header h1 {
 
 header h2 {
     text-shadow: 5px 5px 5px var(--gray);
+}
+
+header h1 {
+    font-size: 96px;
+}
+header h2 {
+    font-size: 32px;
 }
 
 article {
@@ -242,6 +262,10 @@ section.testimonials .testimonials-scroll {
     cursor: grab;
 }
 
+section.testimonials .testimonials-scroll.active{
+    cursor: grabbing;
+}
+
 section.testimonials .testimonial {
     height: fit-content;
     width: fit-content;
@@ -278,6 +302,7 @@ section.testimonials .testimonial .page1 > * {
 
 section.testimonials .testimonial .page2 {
     width: 640px;
+    height: 320px;
     position: absolute;
     top: 0;
     transform-style: preserve-3d;
@@ -320,29 +345,6 @@ section.testimonials .testimonial .page2-content-back span {
     color: var(--dark-gray)
 }
 
-footer {
-    background-color: var(--dark-gray);
-    height: 48px;
-    color: var(--gray);
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-footer span {
-    display: block;
-}
-
-header h1 {
-    font-size: 96px;
-}
-header h2 {
-    font-size: 32px;
-}
-
-
 @media only screen and (min-width: 601px) and (max-width: 992px) {
     .dynamic-product-list {
         min-width: 320px !important;
@@ -364,41 +366,8 @@ header h2 {
         font-size: 16px;
     }
 
-    section.testimonials .testimonials-scroll {
-        padding-right: 0;
-    }
-
-    section.testimonials .testimonial {
-        margin-right: 300px;
-    }
-
-    section.testimonials .testimonial .page1 {
-        width: 240px;
-        height: 240px;
-        font-size: 70%;
-    }
-
-    section.testimonials .testimonial .page1 img:first-of-type {
-        width: 64px;
-        height: 64px;
-    }
-
-    section.testimonials .testimonial .page1 img:last-of-type {
-        height: 64px;
-    }
-
-    section.testimonials .testimonial .page2 {
-        width: 480px;
-    }
-
-    section.testimonials .testimonial .page2-content {
-        width: 240px;
-        height: 240px;
-    }
-
-    section.testimonials .testimonial .page2-content-back {
-        width: 240px;
-        height: 240px;
+    header .header-title {
+        top: 96px;
     }
 }
 
@@ -439,12 +408,23 @@ header h2 {
         display: none;
     }
 
+    header nav a#about-us {
+        margin-left: -16px;
+        margin-right: 16px;
+    }
+
+    header nav a#about-us > span {
+        display: none;
+    }
+
     article div {
         margin: auto;
         max-width: 100%;
         padding: 8px;
     }
+}
 
+@media only screen and (max-width: 992px) {
     section.testimonials .testimonials-scroll {
         padding-right: 0;
     }

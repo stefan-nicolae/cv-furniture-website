@@ -1,5 +1,201 @@
-* {
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+header {
+    width: 100%;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: flex-end;
+}
+
+header nav h1 {
+    color: var(--dark-gray);
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    left: 8px;
+    display: block;
+    margin-top: 4px;
+}
+
+header nav {
+    display: flex;
+}
+
+header nav > a {
+    color: var(--dark-gray);
+    font-size: 24px;
+    display: block;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+
+header nav > a:hover {
+    color: var(--light-green);
+}
+
+header h1 > a {
+    text-decoration: none;
+    color: var(--dark-gray);
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
     margin: auto;
-    padding: 0;
-    margin: 0;
+    margin-top: 48px;
+    position: relative;
+}
+
+section {
+    height: 480px;
+    position: relative;
+    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 0.1);
+    cursor: grab;
+}
+
+section .slideshow {
+    overflow: hidden;
+    width: 480px;
+}
+
+section .scroll-div img {
+    width: 480px;
+}
+
+section.active {
+    cursor: grabbing;
+}
+
+section .scroll-div {
+    display: flex;
+    width: fit-content;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    padding-left: 48px;
+    font-family: 'Montserrat', sans-serif;
+    width: 240px;
+    justify-content: space-between;
+}
+
+aside .colors .color {
+    display: block;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+aside .colors .color:hover {
+    opacity: 0.5;
+}
+
+aside .colors .color.selected {
+    border: 1px solid var(--dark-gray);
+}
+
+main .buy-button {
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    background-color: goldenrod;
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+main .buy-button:hover {
+    background-color: gold;
+}
+
+section .right-arrow,
+section .left-arrow {
+    position: absolute;
+    bottom: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+section .right-arrow:hover,
+section .left-arrow:hover {
+    color: var(--gray);
+}
+
+section .right-arrow {
+    right: 0;
+}
+
+section .left-arrow {
+    left: 5px;
+}
+
+section .tracker {
+    display: flex;
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+section .tracker .tracker-circle {
+    display: block;
+    height: 16px;
+    width: 16px;
+    border: 1px solid var(--dark-gray);
+    opacity: 0.5;
+    border-radius: 1000px;
+    margin: 0 2px;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+    header nav h1 {
+        font-size: 12px;
+        width: 100px;
+    }
+
+}
+
+@media only screen and (max-width: 992px) {
+    main {
+        flex-direction: column;
+        width: 100%;
+        margin-top: unset;
+        padding-bottom: 16px;
+    }
+
+    main section {
+        height: unset;
+    }
+    
+    main section .slideshow {
+        margin-bottom: -8px;
+        width: 100%;
+    }
+
+    main aside {
+        width: 100%;
+        text-align: center;
+        height: 320px;
+        padding-left: 0;
+        padding: 24px;
+    }
+
+    main .buy-button {
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-45%);
+    }
 }

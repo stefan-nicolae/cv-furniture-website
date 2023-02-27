@@ -42,16 +42,151 @@
                         "alt": "back view of our sustainable wooden dark yellow Future Chair"
                     }
                 ]
+            },
+            {
+                "name": "Mystic Chair",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Old Wood from sustainable sources",
+                "date_created": "Febuary 2022",
+                "price": "$180",
+                "images": [
+                    {
+                        "src": "./assets/chairs/scaun lemn vechi 1.jpg",
+                        "alt": "side view of our sustainable Mystic Chair made out of old wood"
+                    },
+                    {
+                        "src": "./assets/chairs/scaun lemn vechi 2.jpg",
+                        "alt": "front view of our sustainable Mystic Chair made out of old wood"
+                    },
+                    {
+                        "src": "./assets/chairs/scaun lemn vechi 3.jpg",
+                        "alt": "back view of our sustainable Mystic Chair made out of old wood"
+                    }
+                ]
+
             }
         ],
         "sofa": [
-            
+            {
+                "name": "Ethereal Sofa",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Cardboard from sustainable sources",
+                "date_created": "March 2021",
+                "price": "$340",
+                "images": [
+                    {
+                        "src": "./assets/sofas/canapea carton 1.jpg",
+                        "alt": "front view of our sustainable cardboard Ethereal Sofa"
+                    },
+                    {
+                        "src": "./assets/sofas/canapea carton 2.jpg",
+                        "alt": "side view of our sustainable cardboard Ethereal Sofa"
+                    },
+                    {
+                        "src": "./assets/sofas/canapea carton 3.jpg",
+                        "alt": "back view of our sustainable cardboard Ethereal Sofa"
+                    }
+                ]
+            },
+            {
+                "name": "Geometric Sofa",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Cotton from sustainable sources",
+                "date_created": "March 2021",
+                "price": "$320",
+                "images": [
+                    {
+                        "src": "./assets/sofas/canapea cuburi 1.jpg",
+                        "alt": "front view of our sustainable cotton Geometric Sofa"
+                    },
+                    {
+                        "src": "./assets/sofas/canapea cuburi 2.jpg",
+                        "alt": "side view of our sustainable cotton Geometric Sofa"
+                    },
+                    {
+                        "src": "./assets/sofas/canapea cuburi 3.jpg",
+                        "alt": "back view of our sustainable cotton Geometric Sofa"
+                    }
+                ]
+            },
+            {
+                "name": "Tavern Sofa",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Rattan from sustainable sources",
+                "date_created": "March 2021",
+                "price": "$340",
+                "images": [
+                    {
+                        "src": "./assets/sofas/canapea ratan 1.jpg",
+                        "alt": "front view of our sustainable rattan Tavern Sofa"
+                    },
+                    {
+                        "src": "./assets/sofas/canapea ratan 2.jpg",
+                        "alt": "side view of our sustainable rattan Tavern Sofa"
+                    },
+                    {
+                        "src": "./assets/sofas/canapea ratan 3.jpg",
+                        "alt": "back view of our sustainable rattan Tavern Sofa"
+                    }
+                ]
+            }
         ],
         "table": [
-
+         {
+                "name": "Disc Table",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Wood from sustainable sources",
+                "date_created": "March 2021",
+                "price": "$180",
+                "images": [
+                    {
+                        "src": "./assets/tables/masa 1.jpg",
+                        "alt": "front view of our sustainable wooden Disc Table, blue"
+                    },
+                    {
+                        "src": "./assets/tables/masa 2.jpg",
+                        "alt": "top view of our sustainable wooden Disc Table, blue"
+                    },
+                    {
+                        "src": "./assets/tables/masa 3.jpg",
+                        "alt": "top view of our sustainable wooden Disc Table, yellow"
+                    },
+                    {
+                        "src": "./assets/tables/masa 4.jpg",
+                        "alt": "front view of our sustainable wooden Disc Table, yellow"
+                    }
+                ],
+                "colors": ["#FCB035", "#4BCBFD"]
+            }
         ],
         "vase": [
-
+            {
+                "name": "Techno Vase",
+                "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
+                "materials": "Special sustainable recycled plastic",
+                "date_created": "September 2025",
+                "price": "$340",
+                "images": [
+                    {
+                        "src": "./assets/vases/vas 1.jpg",
+                        "alt": "Top view of our futuristic Techno Vase made out of special sustainable plastic, color blue"
+                    },
+                    {
+                        "src": "./assets/vases/vas 2.jpg",
+                        "alt": "front view of our futuristic Techno Vase made out of special sustainable plastic, color blue"
+                    },
+                    {
+                        "src": "./assets/vases/vas 3.jpg",
+                        "alt": "front view of our futuristic Techno Vase made out of special sustainable plastic, color orange"
+                    },
+                    {
+                        "src": "./assets/vases/vas 4.jpg",
+                        "alt": "top view of our futuristic Techno Vase made out of special sustainable plastic, color orange"
+                    }
+                ],
+                "colors": ["#82C7CF", "#D8B59C"]
+            }
+            
         ]
     }
 }

@@ -5,16 +5,34 @@ export async function loadProducts() {
     .catch(error => console.log(error));
 }
 
-export function activateSlider(slider, leftArrow, rightArrow) {
+export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, snap=false, tracker=undefined) {
+    if(tracker) tracker.children[0].style.backgroundColor = "black"
+    if(snap) {
+        window.onresize = () => {
+            if(window.outerWidth <= 992) {
+                document.querySelectorAll(".scroll-div img").forEach(img => {
+                    img.style.width = window.innerWidth + "px"
+                })
+            } else {
+                
+            }
+            
+        }
+    }
+
     rightArrow.addEventListener("click", e => {
+        if(snap) scrollWidth = window.innerWidth
+        console.log(scrollWidth)
         slider.scrollBy({
-            left: 400,
+            left: scrollWidth,
             behavior: "smooth"
         })
     })
+
     leftArrow.addEventListener("click", e => {
+        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         slider.scrollBy({
-            left: -400,
+            left: -scrollWidth,
             behavior: "smooth"
         })
     })
@@ -34,9 +52,21 @@ export function activateSlider(slider, leftArrow, rightArrow) {
         slider.classList.remove("active")
     })
 
-    slider.addEventListener('mouseup', () => {
+    slider.addEventListener('mouseup', e => {
+        console.log('mouse up')
         isDown = false
         slider.classList.remove("active")
+        if(snap) {
+            const delta = slider.scrollLeft%e.currentTarget.clientWidth
+            if(delta <= e.currentTarget.clientWidth/2) slider.scrollBy({
+                left: -delta,
+                behavior: "smooth"
+            }) 
+            else slider.scrollBy({
+                left: -delta + e.currentTarget.clientWidth,
+                behavior: "smooth"
+            }) 
+        }
     })
 
     slider.addEventListener('mousemove', (e) => {
@@ -45,5 +75,13 @@ export function activateSlider(slider, leftArrow, rightArrow) {
         const x = e.pageX - slider.offsetLeft
         const walk = (x - startX) * 2
         slider.scrollLeft = scrollLeft - walk
+    })
+
+    slider.addEventListener("scroll", e => {
+        if(snap && tracker) {
+            const index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
+            for(const child of tracker.children) { child.style.backgroundColor = "unset" }
+            tracker.children[index].style.backgroundColor = "black"
+        }
     })
 }
