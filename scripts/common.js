@@ -11,6 +11,11 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
     document.querySelectorAll(".scroll-div img").forEach(img => {
         img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
     })
+    setTimeout(() => {        
+        document.querySelectorAll(".scroll-div img").forEach(img => {
+            img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
+        })
+    }, (300));
 
     if(tracker) tracker.children[0].style.backgroundColor = "black"
 
@@ -50,6 +55,13 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
         })
     });
 
+    ['mouseleave', 'touchleave'].forEach(evt => {
+        slider.addEventListener(evt, e => {
+            isDown = false
+            slider.classList.remove("active")
+        })
+    });
+
     ['mouseup', 'touchend'].forEach(evt => {
         slider.addEventListener(evt, e => {
             if(!snap) {
@@ -85,7 +97,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
             if(!isDown) return
             e.preventDefault()
             const x = cursorX - slider.offsetLeft
-            const walk = (x - startX) * 2
+            const walk = (x - startX) * (2000/slider.clientWidth)
             slider.scrollLeft = scrollLeft - walk
         })
     });
