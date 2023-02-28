@@ -8,22 +8,27 @@ export async function loadProducts() {
 export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, snap=false, tracker=undefined) {
     let isDown = false, startX, scrollLeft, startTime, index = 0
 
-    document.querySelectorAll(".scroll-div img").forEach(img => {
-        img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
-    })
-    setTimeout(() => {        
+    if(snap) {
         document.querySelectorAll(".scroll-div img").forEach(img => {
             img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
         })
-    }, (300));
+    
+        setTimeout(() => {        
+            document.querySelectorAll(".scroll-div img").forEach(img => {
+                img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
+            })
+            document.querySelector("#big-image").style.width = (document.querySelector(".scroll-div img").clientWidth * 2) + "px"
+        }, (300));
+    }
 
-    if(tracker) tracker.children[0].style.backgroundColor = "black"
+    if(snap && tracker) tracker.children[0].style.backgroundColor = "black"
 
     if(snap) {
         window.onresize = () => {
             document.querySelectorAll(".scroll-div img").forEach(img => {
                 img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
             })
+            document.querySelector("#big-image").style.width = (document.querySelector(".scroll-div img").clientWidth * 2) + "px"
         }
     }
 
@@ -64,6 +69,8 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
 
     ['mouseup', 'touchend'].forEach(evt => {
         slider.addEventListener(evt, e => {
+            isDown = false
+            slider.classList.remove("active")
             if(!snap) {
                 const time = new Date() - startTime
                 const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
@@ -75,9 +82,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
                     behavior: "smooth"
                 })
             }
-            isDown = false
-            slider.classList.remove("active")
-            if(snap) {
+            else {
                 const delta = slider.scrollLeft%e.currentTarget.clientWidth
                 if(delta <= e.currentTarget.clientWidth/2) slider.scrollBy({
                     left: -delta,
@@ -111,9 +116,18 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
     });
 
     slider.addEventListener("dblclick", e => {
-        const cursorX = e.layerX - index*e.currentTarget.clientWidth
-        const cursorY = e.currentTarget.clientHeight - e.layerY 
-        console.log([cursorX, cursorY])
+        if(snap) {
+            const bigImage = document.querySelector("#big-image")
+            const cursorX = e.layerX - index*e.currentTarget.clientWidth
+            const cursorY = e.currentTarget.clientHeight - e.layerY 
+
+            if(bigImage.style.display !== "none") bigImage.style.display = "none"
+            else bigImage.style.display = "block"
+
+            bigImage.style.left = cursorX + "px"
+            bigImage.style.bottom = cursorY + "px" 
+
+        }
     });
 }
 
