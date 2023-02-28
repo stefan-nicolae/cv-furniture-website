@@ -5,31 +5,31 @@ export async function loadProducts() {
     .catch(error => console.log(error));
 }
 
-export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, snap=false, tracker=undefined) {
-    let isDown = false, startX, scrollLeft, startTime, index = 0
+export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, 
+        snap=false, tracker=undefined, IMAGES=undefined, BIG_IMAGE=undefined) {
+
+    let isDown = false, startX, scrollLeft, startTime, index=0
 
     if(snap) {
-        document.querySelectorAll(".scroll-div img").forEach(img => {
+        IMAGES.forEach(img => {
             img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
         })
     
         setTimeout(() => {        
-            document.querySelectorAll(".scroll-div img").forEach(img => {
+            IMAGES.forEach(img => {
                 img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
             })
-            document.querySelector("#big-image").style.width = (document.querySelector(".scroll-div img").clientWidth * 2) + "px"
+            BIG_IMAGE.style.width = IMAGES[0].clientWidth * 2 + "px"
         }, (300));
-    }
 
-    if(snap && tracker) tracker.children[0].style.backgroundColor = "black"
-
-    if(snap) {
         window.onresize = () => {
-            document.querySelectorAll(".scroll-div img").forEach(img => {
+            IMAGES.forEach(img => {
                 img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
             })
-            document.querySelector("#big-image").style.width = (document.querySelector(".scroll-div img").clientWidth * 2) + "px"
+            BIG_IMAGE.style.width = IMAGES[0].clientWidth * 2 + "px"
         }
+
+        if(tracker) tracker.children[0].style.backgroundColor = "black"
     }
 
     rightArrow.addEventListener("click", e => {
@@ -39,7 +39,15 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
             behavior: "smooth"
         })
     });
-
+    
+    slider.addEventListener("scroll", e => {
+        if(snap && tracker) {
+            index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
+            for(const child of tracker.children) { child.style.backgroundColor = "unset" }
+            tracker.children[index].style.backgroundColor = "black"
+        }
+    });
+    
     leftArrow.addEventListener("click", e => {
         if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         slider.scrollBy({
@@ -107,26 +115,18 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
         })
     });
     
-    slider.addEventListener("scroll", e => {
-        if(snap && tracker) {
-            index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
-            for(const child of tracker.children) { child.style.backgroundColor = "unset" }
-            tracker.children[index].style.backgroundColor = "black"
-        }
-    });
 
     slider.addEventListener("dblclick", e => {
-        if(snap) {
-            const bigImage = document.querySelector("#big-image")
+        if(snap && BIG_IMAGE) {
             const cursorX = e.layerX - index*e.currentTarget.clientWidth
             const cursorY = e.currentTarget.clientHeight - e.layerY 
 
-            if(bigImage.style.display !== "none") bigImage.style.display = "none"
-            else bigImage.style.display = "block"
+            if(BIG_IMAGE.style.display !== "none") BIG_IMAGE.style.display = "none"
+            else BIG_IMAGE.style.display = "block"
 
-            bigImage.style.left = cursorX + "px"
-            bigImage.style.bottom = cursorY + "px" 
-
+            BIG_IMAGE.style.left = cursorX + "px"
+            BIG_IMAGE.style.bottom = cursorY + "px" 
+            BIG_IMAGE.style.transform = `translate(${-cursorX*2}px, ${cursorY*2}px)`
         }
     });
 }

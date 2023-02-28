@@ -82,7 +82,7 @@ main section .scroll-div {
 
 #big-image {
     position: absolute;
-    opacity: 0.5;
+    /* opacity: 0.5; */
     z-index: 100;
     bottom: 0px;
     pointer-events:none;        

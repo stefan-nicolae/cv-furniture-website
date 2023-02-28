@@ -55,7 +55,9 @@ loadProducts().then(res => {
                 document.querySelector("section .right-arrow"),
                 document.querySelector("section").clientWidth,
                 true,
-                tracker
+                tracker,
+                document.querySelectorAll(".scroll-div img"),
+                document.querySelector("#big-image")
             )
 
             document.querySelector(".other-furniture-wrapper h1").textContent = `Other ${productCategory}s`
