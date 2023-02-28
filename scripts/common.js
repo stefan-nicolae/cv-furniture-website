@@ -47,15 +47,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
         })
     });
 
-    ['mouseleave', 'touchleave'].forEach(evt=> {
-        slider.addEventListener(evt, e => {
-            isDown = false
-            slider.classList.remove("active")
-        });
-    });
-
-
-    ['mouseup', 'touchend'].forEach(evt => {
+    ['mouseup', 'mouseleave', 'touchend', 'touchleave'].forEach(evt => {
         slider.addEventListener(evt, e => {
             isDown = false
             slider.classList.remove("active")
