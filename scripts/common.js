@@ -6,7 +6,7 @@ export async function loadProducts() {
 }
 
 export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, snap=false, tracker=undefined) {
-    let isDown = false, startX, scrollLeft, startTime
+    let isDown = false, startX, scrollLeft, startTime, index = 0
 
     document.querySelectorAll(".scroll-div img").forEach(img => {
         img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
@@ -104,10 +104,16 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
     
     slider.addEventListener("scroll", e => {
         if(snap && tracker) {
-            const index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
+            index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
             for(const child of tracker.children) { child.style.backgroundColor = "unset" }
             tracker.children[index].style.backgroundColor = "black"
         }
+    });
+
+    slider.addEventListener("dblclick", e => {
+        const cursorX = e.layerX - index*e.currentTarget.clientWidth
+        const cursorY = e.currentTarget.clientHeight - e.layerY 
+        console.log([cursorX, cursorY])
     });
 }
 
