@@ -6,10 +6,14 @@ export async function loadProducts() {
 }
 
 export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, snap=false, tracker=undefined) {
+    let isDown = false, startX, scrollLeft, startTime
+
     document.querySelectorAll(".scroll-div img").forEach(img => {
         img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
     })
+
     if(tracker) tracker.children[0].style.backgroundColor = "black"
+
     if(snap) {
         window.onresize = () => {
             document.querySelectorAll(".scroll-div img").forEach(img => {
@@ -34,21 +38,31 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
         })
     });
 
-    let isDown = false, startX, scrollLeft
-
     ['mousedown', 'touchstart'].forEach(evt => {
         slider.addEventListener(evt, e => {
+            startTime = new Date()
             isDown = true
             slider.classList.add("active")
-            let cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
+            const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             startX = cursorX - slider.offsetLeft
             scrollLeft = slider.scrollLeft
             e.preventDefault()
         })
     });
 
-    ['mouseup', 'mouseleave', 'touchend', 'touchleave'].forEach(evt => {
+    ['mouseup', 'touchend'].forEach(evt => {
         slider.addEventListener(evt, e => {
+            if(!snap) {
+                const time = new Date() - startTime
+                const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
+                const endX = cursorX - slider.offsetLeft
+                const distance = endX - startX
+                const speed = distance/time 
+                slider.scrollBy({
+                    left: -500 * speed,
+                    behavior: "smooth"
+                })
+            }
             isDown = false
             slider.classList.remove("active")
             if(snap) {
@@ -67,7 +81,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
 
     ['mousemove', 'touchmove'].forEach(evt => {
         slider.addEventListener(evt, e => {
-            let cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
+            const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             if(!isDown) return
             e.preventDefault()
             const x = cursorX - slider.offsetLeft
@@ -86,7 +100,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, s
 }
 
 export function openProduct(category, name) {
-    let url = new URL("/product.html" , "http://" + window.location.host)
+    const url = new URL("/product.html" , "http://" + window.location.host)
     url.searchParams.append('category', category)
     url.searchParams.append('name', name)
     return url.href
