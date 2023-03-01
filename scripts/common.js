@@ -163,6 +163,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 }
 
 export function openProduct(category, name) {
+    console.log(window.location.href)
     if(!window.location.href.includes("stefan-nicolae"))
         return `/product.html?category=${category}&name=${name}`
     return `/cv-furniture-website/product.html?category=${category}&name=${name}`
