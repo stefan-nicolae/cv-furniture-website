@@ -120,12 +120,11 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
             e.preventDefault()
             const x = X - slider.offsetLeft
             let multiplier = 1
-            if(window.innerWidth <= 992) {
-                multiplier = 0.5
-            }
             if(window.innerWidth <= 600) {
-                multiplier = 0.3
+                multiplier = 0.1
+
             }
+            if(snap) multiplier = 2
             const walk = (x - startX) * multiplier
             slider.scrollLeft = scrollLeft - walk
             if(BIG_IMAGE) BIG_IMAGE.lastElementChild.style.display = "none"
