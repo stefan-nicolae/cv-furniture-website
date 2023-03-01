@@ -60,7 +60,6 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
                 dynListSection.innerHTML += productElement
             })
             dynamicProductListWrapper.append()
-     
         }
         else {
             if(dynamicProductList.style.display !== "flex") 
@@ -88,8 +87,6 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
     })
 })
 
-
-
 window.onresize = () => {
     dynamicProductList.style.marginLeft = 0
     if(window.innerWidth > 600) 
@@ -99,7 +96,6 @@ window.onresize = () => {
         if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
     }
 }
-
 
 window.onscroll = () => {
     let space = window.innerHeight - testimonials.offsetTop + window.scrollY
