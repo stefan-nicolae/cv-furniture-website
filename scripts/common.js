@@ -119,9 +119,16 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
             if(!isDown) return
             e.preventDefault()
             const x = X - slider.offsetLeft
-            const walk = (x - startX) * (2000/slider.clientWidth)
+            let multiplier = 1
+            if(window.innerWidth <= 992) {
+                multiplier = 0.5
+            }
+            if(window.innerWidth <= 600) {
+                multiplier = 0.3
+            }
+            const walk = (x - startX) * multiplier
             slider.scrollLeft = scrollLeft - walk
-            BIG_IMAGE.lastElementChild.style.display = "none"
+            if(BIG_IMAGE) BIG_IMAGE.lastElementChild.style.display = "none"
         })
     });
 
@@ -156,6 +163,8 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 }
 
 export function openProduct(category, name) {
-    return `/product.html?category=${category}&name=${name}`
+    if(!window.location.href.includes("stefan-nicolae"))
+        return `/product.html?category=${category}&name=${name}`
+    return `/cv-furniture-website/product.html?category=${category}&name=${name}`
 
 }
