@@ -156,8 +156,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 }
 
 export function openProduct(category, name) {
-    const url = new URL("/product.html" , "http://" + window.location.host)
-    url.searchParams.append('category', category)
-    url.searchParams.append('name', name)
-    return url.href
+    return `/product.html?category=${category}&name=${name}`
+
 }
