@@ -370,7 +370,18 @@ section.testimonials .testimonial .page2-content-back span {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 5px 5px 10px rgba(28, 28, 28, 0.3)
+    box-shadow: 5px 5px 10px rgba(28, 28, 28, 0.3);
+    animation: 5s ease-in slidein;
+}
+
+@keyframes slidein {
+    from {
+        transform: translateX(200%);        
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 .popup h1 {

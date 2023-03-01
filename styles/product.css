@@ -82,10 +82,12 @@ main section .scroll-div {
 
 #big-image {
     position: absolute;
-    /* opacity: 0.5; */
+    pointer-events: none; 
     z-index: 100;
-    bottom: 0px;
-    pointer-events:none;        
+}
+
+#big-image img {
+    width: 100%;
 }
 
 aside {

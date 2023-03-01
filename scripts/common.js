@@ -11,22 +11,26 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     let isDown = false, startX, scrollLeft, startTime, index=0
 
     if(snap) {
-        IMAGES.forEach(img => {
-            img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
-        })
-    
-        setTimeout(() => {        
+        const imageResize = () => {
             IMAGES.forEach(img => {
                 img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
             })
-            BIG_IMAGE.style.width = IMAGES[0].clientWidth * 2 + "px"
+        }
+
+        const bigImageResize = () => {
+            if(BIG_IMAGE) BIG_IMAGE.lastElementChild.style.width = IMAGES[0].clientWidth * 2 + "px"
+        }
+
+        imageResize()
+    
+        setTimeout(() => {        
+            imageResize()
+            bigImageResize()
         }, (300));
 
         window.onresize = () => {
-            IMAGES.forEach(img => {
-                img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
-            })
-            BIG_IMAGE.style.width = IMAGES[0].clientWidth * 2 + "px"
+            imageResize()
+            bigImageResize()
         }
 
         if(tracker) tracker.children[0].style.backgroundColor = "black"
@@ -47,9 +51,10 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
             tracker.children[index].style.backgroundColor = "black"
         }
     });
-    
+
     leftArrow.addEventListener("click", e => {
         if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
+        BIG_IMAGE.lastElementChild.style.display = "none"
         slider.scrollBy({
             left: -scrollWidth,
             behavior: "smooth"
@@ -106,27 +111,46 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     ['mousemove', 'touchmove'].forEach(evt => {
         slider.addEventListener(evt, e => {
-            const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
-            if(!isDown) return
-            e.preventDefault()
-            const x = cursorX - slider.offsetLeft
-            const walk = (x - startX) * (2000/slider.clientWidth)
-            slider.scrollLeft = scrollLeft - walk
-        })
-    });
-    
-
-    slider.addEventListener("dblclick", e => {
-        if(snap && BIG_IMAGE) {
+            const X = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             const cursorX = e.layerX - index*e.currentTarget.clientWidth
             const cursorY = e.currentTarget.clientHeight - e.layerY 
+            calculateBigImage(cursorX, cursorY )
 
-            if(BIG_IMAGE.style.display !== "none") BIG_IMAGE.style.display = "none"
-            else BIG_IMAGE.style.display = "block"
+            if(!isDown) return
+            e.preventDefault()
+            const x = X - slider.offsetLeft
+            const walk = (x - startX) * (2000/slider.clientWidth)
+            slider.scrollLeft = scrollLeft - walk
+            BIG_IMAGE.lastElementChild.style.display = "none"
+        })
+    });
 
+    const calculateBigImage = (cursorX, cursorY) => {
+        if(BIG_IMAGE) {
             BIG_IMAGE.style.left = cursorX + "px"
             BIG_IMAGE.style.bottom = cursorY + "px" 
             BIG_IMAGE.style.transform = `translate(${-cursorX*2}px, ${cursorY*2}px)`
+            const cropX = 100, cropY = 100
+            let leftCrop = cursorX*2 - cropX
+            let rightCrop = BIG_IMAGE.clientWidth - cursorX*2 - cropX
+            if(cursorX*2 <= cropX) leftCrop = 0
+            if(cursorX*2 >= BIG_IMAGE.clientWidth - cropX) rightCrop = 0
+            let topCrop = BIG_IMAGE.clientHeight - cursorY*2 - cropY
+            let botCrop = cursorY*2 - cropY
+            if(cursorY*2 <= cropY) botCrop = 0
+            if(cursorY*2 >= BIG_IMAGE.clientHeight - cropY) topCrop = 0
+            BIG_IMAGE.style.clipPath = `inset(${topCrop}px ${rightCrop}px ${botCrop}px ${leftCrop}px)`
+        }
+    }
+
+    slider.addEventListener("dblclick", e => {
+        if(BIG_IMAGE) {
+            if(BIG_IMAGE.lastElementChild.style.display !== "none") BIG_IMAGE.lastElementChild.style.display = "none"
+            else BIG_IMAGE.lastElementChild.style.display = "unset"
+            BIG_IMAGE.lastElementChild.src = IMAGES[index].src
+            const cursorX = e.layerX - index*e.currentTarget.clientWidth
+            const cursorY = e.currentTarget.clientHeight - e.layerY 
+            calculateBigImage(cursorX, cursorY)
         }
     });
 }
