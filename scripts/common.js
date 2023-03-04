@@ -111,14 +111,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         })
     });
 
-    ['mouseleave', 'touchleave'].forEach(evt => {
-        slider.addEventListener(evt, e => {
-            isDown = false
-            slider.classList.remove("active")
-        })
-    });
-
-    ['mouseup', 'touchend'].forEach(evt => {
+    ['mouseup', 'touchend', 'mouseleave', 'touchleave'].forEach(evt => {
         slider.addEventListener(evt, e => {
             isDown = false
             slider.classList.remove("active")
@@ -149,9 +142,9 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     ['mousemove', 'touchmove'].forEach(evt => {
         slider.addEventListener(evt, e => {
-            if(!isDown) return
             const X = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             calculateBigImage(getBigImageXY(e))
+            if(!isDown) return
             if(BIG_IMAGE && BIG_IMAGE.style.display !== "none") return
             const x = X - slider.offsetLeft
             let multiplier = 1

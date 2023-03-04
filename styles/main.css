@@ -288,6 +288,7 @@ section.testimonials .testimonial {
     font-family: 'Montserrat', sans-serif;
     color: var(--gray);
     margin-right: 344px;
+    user-select: none;
 }
 
 section.testimonials .testimonial .page1 {
