@@ -102,8 +102,8 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     ['mousedown', 'touchstart'].forEach(evt => {
         slider.addEventListener(evt, e => {
-            startTime = new Date()
             isDown = true
+            startTime = new Date()
             slider.classList.add("active")
             const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             startX = cursorX - slider.offsetLeft
@@ -149,10 +149,10 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     ['mousemove', 'touchmove'].forEach(evt => {
         slider.addEventListener(evt, e => {
+            if(!isDown) return
             const X = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             calculateBigImage(getBigImageXY(e))
             if(BIG_IMAGE && BIG_IMAGE.style.display !== "none") return
-            if(!isDown) return
             const x = X - slider.offsetLeft
             let multiplier = 1
             if(window.innerWidth <= 600) {

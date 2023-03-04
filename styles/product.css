@@ -60,6 +60,7 @@ main section {
     position: relative;
     box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 0.1);
     cursor: grab;
+    user-select: none;
 }
 
 main section .slideshow {
@@ -71,7 +72,7 @@ main section .scroll-div img {
     width: 480px;
 }
 
-main section.active {
+main section .active {
     cursor: grabbing;
 }
 

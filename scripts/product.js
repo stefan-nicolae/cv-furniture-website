@@ -17,7 +17,7 @@ loadProducts().then(res => {
             product.images.forEach(image => {
                 const imageElement = `
                     <div class="image-element">
-                        <img src="${image.src}" alt="${image.alt}">
+                        <img draggable="false" src="${image.src}" alt="${image.alt}">
                     </div>
                     `
                 scrollDiv.innerHTML += imageElement
@@ -85,8 +85,8 @@ loadProducts().then(res => {
             }
         }    
     })    
-})    
+});
 
-document.querySelectorAll(".home-button").forEach("a", () => {
-    a.setAttribute('href', window.location.href.includes('stefan-nicolae') ? '/cv-furniture-website': '/');
+document.querySelectorAll(".home-button").forEach(LINK => {
+    LINK.setAttribute('href', window.location.href.includes('stefan-nicolae') ? '/cv-furniture-website': '/');
 })
