@@ -76,9 +76,18 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     rightArrow.addEventListener("click", e => {
         if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
-        BIG_IMAGE.style.display = "none"
+        if(BIG_IMAGE) BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: scrollWidth,
+            behavior: "smooth"
+        })
+    });
+
+    leftArrow.addEventListener("click", e => {
+        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
+        if(BIG_IMAGE) BIG_IMAGE.style.display = "none"
+        slider.scrollBy({
+            left: -scrollWidth,
             behavior: "smooth"
         })
     });
@@ -89,15 +98,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
             for(const child of tracker.children) { child.style.backgroundColor = "unset" }
             tracker.children[index].style.backgroundColor = "black"
         }
-    });
-
-    leftArrow.addEventListener("click", e => {
-        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
-        BIG_IMAGE.style.display = "none"
-        slider.scrollBy({
-            left: -scrollWidth,
-            behavior: "smooth"
-        })
     });
 
     ['mousedown', 'touchstart'].forEach(evt => {
