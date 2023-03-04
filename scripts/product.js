@@ -26,6 +26,7 @@ loadProducts().then(res => {
 
             aside.innerHTML = `
                 <h1>${product.name}</h1>
+                <span><b>Double click/tap to zoom!</b></span>
                 <span>${product.description}</span>
                 <span>${product.materials}</span>
                 <span><b>${product.price}</b></span>
@@ -86,5 +87,6 @@ loadProducts().then(res => {
     })    
 })    
 
-
-
+document.querySelectorAll(".home-button").forEach("a", () => {
+    a.href = window.location.href.includes('stefan-nicolae') ? '/cv-furniture-website': '/'
+})

@@ -13,7 +13,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     const calculateBigImage = (XY) => {
         if(BIG_IMAGE) {
-            console.log(XY)
             const cropX = 128, cropY = 128
             let cursorX = XY[0], cursorY = XY[1]
             BIG_IMAGE.style.left = cursorX - cropX/2 + "px"
@@ -104,9 +103,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     ['mousedown', 'touchstart'].forEach(evt => {
         slider.addEventListener(evt, e => {
             startTime = new Date()
-            if(snap) {
-                doubleClickOne = newDate()
-            }
             isDown = true
             slider.classList.add("active")
             const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
