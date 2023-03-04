@@ -88,5 +88,5 @@ loadProducts().then(res => {
 })    
 
 document.querySelectorAll(".home-button").forEach("a", () => {
-    a.href = window.location.href.includes('stefan-nicolae') ? '/cv-furniture-website': '/'
+    a.setAttribute('href', window.location.href.includes('stefan-nicolae') ? '/cv-furniture-website': '/');
 })
