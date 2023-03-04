@@ -116,6 +116,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
             isDown = false
             slider.classList.remove("active")
             if(!snap) {
+                if(evt === "mousleave" || evt === "touchleave") return
                 const time = new Date() - startTime
                 const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
                 const endX = cursorX - slider.offsetLeft
