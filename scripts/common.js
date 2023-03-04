@@ -1,14 +1,52 @@
+const isMobile = ('ontouchstart' in document.documentElement && navigator.userAgent.match(/Mobi/));
+
 export async function loadProducts() {
     return fetch('./assets/productList.json')
     .then(response => response.json())
     .then(data => data.products)
-    .catch(error => console.log(error));
 }
 
 export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, 
         snap=false, tracker=undefined, IMAGES=undefined, BIG_IMAGE=undefined) {
 
     let isDown = false, startX, scrollLeft, startTime, index=0
+
+    const calculateBigImage = (XY) => {
+        if(BIG_IMAGE) {
+            console.log(XY)
+            const cropX = 128, cropY = 128
+            let cursorX = XY[0], cursorY = XY[1]
+            BIG_IMAGE.style.left = cursorX - cropX/2 + "px"
+            BIG_IMAGE.style.bottom = cursorY - cropY/2 + "px"
+            BIG_IMAGE.style.height = cropY + "px"
+            BIG_IMAGE.style.width = cropX + "px"
+            BIG_IMAGE.lastElementChild.style.objectPosition = `-${cursorX*2 - cropX/2}px ${cursorY*2+cropY/2-BIG_IMAGE.lastElementChild.clientHeight}px`
+        }
+    }
+
+    const getBigImageXY = e => {
+        const X = e.layerX !== undefined ? e.layerX : e.changedTouches[0].clientX
+        const Y = e.layerY !== undefined ? e.layerY : e.changedTouches[0].clientY
+        let cursorX = X - index*e.currentTarget.clientWidth 
+        if(cursorX < 0) cursorX += slider.clientWidth * index
+        const cursorY = e.currentTarget.clientHeight - Y
+        return [cursorX, cursorY]
+    }
+
+    const toggleBigImage = e => {
+        if(BIG_IMAGE) {
+            if(BIG_IMAGE.style.display === "block") {
+                BIG_IMAGE.style.display = "none"
+                document.body.style.overflow = "unset";
+            }
+            else {
+                BIG_IMAGE.style.display = "block"
+                if(isMobile) document.body.style.overflow = "hidden";
+            }
+            BIG_IMAGE.lastElementChild.src = IMAGES[index].src
+            calculateBigImage(getBigImageXY(e))
+        }
+    }
 
     if(snap) {
         const imageResize = () => {
@@ -26,6 +64,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         setTimeout(() => {        
             imageResize()
             bigImageResize()
+            leftArrow.click()
         }, (300));
 
         window.onresize = () => {
@@ -38,6 +77,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     rightArrow.addEventListener("click", e => {
         if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
+        BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: scrollWidth,
             behavior: "smooth"
@@ -54,7 +94,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
 
     leftArrow.addEventListener("click", e => {
         if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
-        BIG_IMAGE.lastElementChild.style.display = "none"
+        BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: -scrollWidth,
             behavior: "smooth"
@@ -64,12 +104,14 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     ['mousedown', 'touchstart'].forEach(evt => {
         slider.addEventListener(evt, e => {
             startTime = new Date()
+            if(snap) {
+                doubleClickOne = newDate()
+            }
             isDown = true
             slider.classList.add("active")
             const cursorX = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
             startX = cursorX - slider.offsetLeft
             scrollLeft = slider.scrollLeft
-            e.preventDefault()
         })
     });
 
@@ -112,57 +154,28 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     ['mousemove', 'touchmove'].forEach(evt => {
         slider.addEventListener(evt, e => {
             const X = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
-            const cursorX = e.layerX - index*e.currentTarget.clientWidth
-            const cursorY = e.currentTarget.clientHeight - e.layerY 
-            calculateBigImage(cursorX, cursorY )
-
+            calculateBigImage(getBigImageXY(e))
+            if(BIG_IMAGE && BIG_IMAGE.style.display !== "none") return
             if(!isDown) return
-            e.preventDefault()
             const x = X - slider.offsetLeft
             let multiplier = 1
             if(window.innerWidth <= 600) {
                 multiplier = 0.1
-
             }
             if(snap) multiplier = 2
             const walk = (x - startX) * multiplier
             slider.scrollLeft = scrollLeft - walk
-            if(BIG_IMAGE) BIG_IMAGE.lastElementChild.style.display = "none"
         })
     });
 
-    const calculateBigImage = (cursorX, cursorY) => {
-        if(BIG_IMAGE) {
-            BIG_IMAGE.style.left = cursorX + "px"
-            BIG_IMAGE.style.bottom = cursorY + "px" 
-            BIG_IMAGE.style.transform = `translate(${-cursorX*2}px, ${cursorY*2}px)`
-            const cropX = 100, cropY = 100
-            let leftCrop = cursorX*2 - cropX
-            let rightCrop = BIG_IMAGE.clientWidth - cursorX*2 - cropX
-            if(cursorX*2 <= cropX) leftCrop = 0
-            if(cursorX*2 >= BIG_IMAGE.clientWidth - cropX) rightCrop = 0
-            let topCrop = BIG_IMAGE.clientHeight - cursorY*2 - cropY
-            let botCrop = cursorY*2 - cropY
-            if(cursorY*2 <= cropY) botCrop = 0
-            if(cursorY*2 >= BIG_IMAGE.clientHeight - cropY) topCrop = 0
-            BIG_IMAGE.style.clipPath = `inset(${topCrop}px ${rightCrop}px ${botCrop}px ${leftCrop}px)`
-        }
-    }
-
     slider.addEventListener("dblclick", e => {
         if(BIG_IMAGE) {
-            if(BIG_IMAGE.lastElementChild.style.display !== "none") BIG_IMAGE.lastElementChild.style.display = "none"
-            else BIG_IMAGE.lastElementChild.style.display = "unset"
-            BIG_IMAGE.lastElementChild.src = IMAGES[index].src
-            const cursorX = e.layerX - index*e.currentTarget.clientWidth
-            const cursorY = e.currentTarget.clientHeight - e.layerY 
-            calculateBigImage(cursorX, cursorY)
+            toggleBigImage(e)
         }
     });
 }
 
 export function openProduct(category, name) {
-    console.log(window.location.href)
     if(!window.location.href.includes("stefan-nicolae"))
         return `/product.html?category=${category}&name=${name}`
     return `/cv-furniture-website/product.html?category=${category}&name=${name}`

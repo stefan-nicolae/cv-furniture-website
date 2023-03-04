@@ -84,10 +84,12 @@ main section .scroll-div {
     position: absolute;
     pointer-events: none; 
     z-index: 100;
+    overflow: hidden;
+    display: none;
 }
 
 #big-image img {
-    width: 100%;
+    object-fit: cover;
 }
 
 aside {

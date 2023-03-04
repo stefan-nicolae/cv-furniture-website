@@ -13,6 +13,10 @@
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 footer {
     background-color: var(--dark-gray);
     color: var(--gray);
