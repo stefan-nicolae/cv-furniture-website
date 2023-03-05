@@ -34,10 +34,6 @@ header nav > a {
     margin-top: 8px;
 }
 
-header nav > a:hover {
-    color: var(--light-green);
-}
-
 header h1 > a {
     text-decoration: none;
     color: var(--dark-gray);
@@ -109,10 +105,6 @@ aside .colors .color {
     cursor: pointer;
 }
 
-aside .colors .color:hover {
-    opacity: 0.5;
-}
-
 aside .colors .color.selected {
     border: 1px solid var(--dark-gray);
 }
@@ -130,10 +122,6 @@ main .buy-button {
     cursor: pointer;
 }
 
-main .buy-button:hover {
-    background-color: gold;
-}
-
 main section .right-arrow,
 main section .left-arrow {
     position: absolute;
@@ -141,11 +129,6 @@ main section .left-arrow {
     font-size: 24px;
     cursor: pointer;
     color: var(--dark-gray);
-}
-
-main section .right-arrow:hover,
-main section .left-arrow:hover {
-    color: var(--gray);
 }
 
 main section .right-arrow {
@@ -214,10 +197,6 @@ section.other-furniture .new-product {
     position: relative;
 }
 
-section.other-furniture .new-product:hover {
-    background-color: var(--light-green);
-}
-
 section.other-furniture .new-product img {
     width: 100%;
 }
@@ -282,5 +261,28 @@ section.other-furniture .new-product a {
         bottom: 16px;
         left: 50%;
         transform: translateX(-45%);
+    }
+}
+
+@media (hover: hover) {
+    aside .colors .color:hover {
+        opacity: 0.5;
+    }
+    
+    section.other-furniture .new-product:hover {
+        background-color: var(--light-green);
+    }
+
+    main section .right-arrow:hover,
+    main section .left-arrow:hover {
+        color: var(--gray);
+    }
+
+    main .buy-button:hover {
+        background-color: gold;
+    }
+    
+    header nav > a:hover {
+        color: var(--light-green);
     }
 }

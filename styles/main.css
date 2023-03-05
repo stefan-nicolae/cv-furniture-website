@@ -31,11 +31,6 @@ header .round-header-button img {
     filter: hue-rotate(270deg) brightness(120%);
 }
 
-header .round-header-button img:hover {
-    transform: rotate(360deg);
-    transition: ease-in 0.5s;
-}
-
 header .vase {
     left: 17%;
     top: 30vw;
@@ -118,10 +113,6 @@ header .dyn-list-product a {
     z-index: 1;
 }
 
-header .dyn-list-product:hover {
-    color: var(--gray);
-}
-
 header .dyn-list-product .info {
     padding-left: 8px;
     display: flex;
@@ -158,10 +149,6 @@ header nav a {
     color: white;
 }
 
-header nav a:hover {
-    color: var(--light-green);
-}
-
 header nav a#about-us {
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
@@ -175,14 +162,6 @@ header nav a#about-us {
 header nav a#about-us iconify-icon {
     margin-bottom: -4px;
     margin-left: 8px;
-}
-
-header nav a#about-us:hover {
-    color: white;
-}
-
-header nav a#about-us:hover iconify-icon {
-    margin-bottom: -8px;
 }
 
 header .header-title {
@@ -252,11 +231,6 @@ section.testimonials .right-arrow {
     top: 24px;
     cursor: pointer;
     font-size: 24px;
-}
-
-section.testimonials .left-arrow:hover,
-section.testimonials .right-arrow:hover {
-    color: var(--gray);
 }
 
 section.testimonials .left-arrow {
@@ -390,11 +364,6 @@ section.testimonials .testimonial .page2-content-back span {
     margin-bottom: 8px;
 }
 
-.popup:hover {
-    background-color: rgb(225, 200, 204);
-    color: var(--dark-gray);
-}
-
 .popup span {
     font-size: 12px;
 }
@@ -407,12 +376,12 @@ section.testimonials .testimonial .page2-content-back span {
     cursor: pointer;
 }
 
-.popup span#close:hover
-{
-    color: rgb(193, 227, 249)
-}
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
+    header #butterfly img {
+        height: 4vw;
+    }
+
     .dynamic-product-list {
         min-width: 320px !important;
     }
@@ -439,6 +408,10 @@ section.testimonials .testimonial .page2-content-back span {
 }
 
 @media only screen and (max-width: 600px) {
+    header #butterfly img {
+        height: 6vw;
+    }
+
     header .dynamic-product-list {
         width: calc(100% - 48px);
         min-width: unset;
@@ -527,5 +500,43 @@ section.testimonials .testimonial .page2-content-back span {
     section.testimonials .testimonial .page2-content-back {
         width: 240px;
         height: 240px;
+    }
+}
+
+@media(hover: hover) {
+    header .round-header-button img:hover {
+        transform: rotate(360deg);
+        transition: ease-in 0.5s;
+    }
+    
+    .popup span#close:hover
+    {
+        color: rgb(193, 227, 249)
+    }
+    
+    .popup:hover {
+        background-color: rgb(225, 200, 204);
+        color: var(--dark-gray);
+    }
+    
+    section.testimonials .left-arrow:hover,
+    section.testimonials .right-arrow:hover {
+        color: var(--gray);
+    }
+    
+    header nav a#about-us:hover {
+        color: white;
+    }
+    
+    header nav a#about-us:hover iconify-icon {
+        margin-bottom: -8px;
+    }
+    
+    header nav a:hover {
+        color: var(--light-green);
+    }
+    
+    header .dyn-list-product:hover {
+        color: var(--gray);
     }
 }
