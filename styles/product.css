@@ -1,5 +1,4 @@
 body {
-    background-color: rgb(238, 238, 238);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -7,18 +6,18 @@ body {
 
 header {
     width: 100%;
-    background-color: var(--gray);
+    padding: 8px ;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+b, strong {
+    font-family: helveticabold;
+    font-weight: normal;
+    color: var(--light-green);
 }
 
 header nav h1 {
-    color: var(--dark-gray);
-    font-family: 'Montserrat', sans-serif;
-    position: absolute;
-    left: 8px;
-    display: block;
-    margin-top: 4px;
     font-weight: 100;
 }
 
@@ -27,17 +26,17 @@ header nav {
 }
 
 header nav > a {
-    color: var(--dark-gray);
-    font-size: 24px;
+    font-size: 32px;
     display: block;
-    margin-right: 8px;
+    margin-right: 16px;
     margin-top: 8px;
+    color: var(--dark-green) !important;
 }
 
 header h1 > a {
     text-decoration: none;
-    color: var(--dark-gray);
     cursor: pointer;
+    color: var(--dark-green) !important;
 }
 
 main {
@@ -47,8 +46,8 @@ main {
     display: flex;
     margin: auto;
     margin-top: 48px;
-    position: relative;
-    padding-bottom: 48px;
+    position: relative;    color: var(--dark-green);
+    margin-bottom: 256px;
 }
 
 main section {
@@ -93,7 +92,6 @@ aside {
     display: flex;
     flex-direction: column;
     padding-left: 48px;
-    font-family: 'Montserrat', sans-serif;
     width: 320px;
     justify-content: space-between;
 }
@@ -105,21 +103,19 @@ aside .colors .color {
     cursor: pointer;
 }
 
-aside .colors .color.selected {
-    border: 1px solid var(--dark-gray);
-}
-
 main .buy-button {
     position: absolute;
-    bottom: 145px;
     right: 0;
-    background-color: goldenrod;
+    bottom: 0;
     padding: 8px 24px;
     border-radius: 8px;
     border: none;
-    color: white;
-    font-size: 16px;
+    font-size: 24px;
+    font-family: helveticabold;
     cursor: pointer;
+    background-color: var(--dark-green);
+    color: var(--orange)
+
 }
 
 main section .right-arrow,
@@ -128,7 +124,6 @@ main section .left-arrow {
     bottom: 50%;
     font-size: 24px;
     cursor: pointer;
-    color: var(--dark-gray);
 }
 
 main section .right-arrow {
@@ -148,49 +143,40 @@ main section .tracker {
 }
 
 main section .tracker .tracker-circle {
-    display: block;
     height: 16px;
     width: 16px;
-    border: 1px solid var(--dark-gray);
     opacity: 0.5;
     border-radius: 1000px;
     margin: 0 2px;
+    border: 1px solid var(--dark-green);
 }
 
 
 section.other-furniture {
-    background-color: white;
     padding: 24px;
     flex: 1;
     width: 100%;
+    color: var(--dark-green);
+    background-color: var(--very-light-green);
+    padding-bottom: 48px;
 }
 
 section.other-furniture h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--dark-gray);
     font-weight: 100;
     text-align: center;
     margin-top: 24px;
-}
-
-section.other-furniture hr {
-    margin: 32px 0;
-    color: var(--gray);
-    opacity: 0.1;
+    margin-bottom: 64px;
 }
 
 section.other-furniture .list {
     display: flex;
-    font-family: 'Montserrat', sans-serif;
     justify-content: center;
 }
 
 section.other-furniture .new-product {
-    background-color: rgb(171, 171, 171);
     width: 240px;
     height: fit-content;
     margin-right: 24px;
-    color: white;
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
@@ -206,7 +192,6 @@ section.other-furniture .new-product > * {
 }
 
 section.other-furniture .new-product a {
-    background-color: red;
     display: block;
     position: absolute;
     top: 0;
@@ -217,72 +202,3 @@ section.other-furniture .new-product a {
     z-index: 1;
 }
 
-@media only screen and (min-width: 601px) and (max-width: 992px) {
-
-}
-
-@media only screen and (max-width: 600px) {
-    header nav h1 {
-        font-size: 12px;
-        width: 100px;
-    }
-
-    section.other-furniture .new-product {
-        font-size: 13px;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    main {
-        flex-direction: column;
-        width: 100%;
-        margin-top: unset;
-        padding-bottom: 16px;
-    }
-
-    main section {
-        height: unset;
-    }
-    
-    main section .slideshow {
-        margin-bottom: -8px;
-        width: 100%;
-    }
-
-    main aside {
-        width: 100%;
-        text-align: center;
-        height: 320px;
-        padding-left: 0;
-        padding: 24px;
-    }
-
-    main .buy-button {
-        bottom: 16px;
-        left: 50%;
-        transform: translateX(-45%);
-    }
-}
-
-@media (hover: hover) {
-    aside .colors .color:hover {
-        opacity: 0.5;
-    }
-    
-    section.other-furniture .new-product:hover {
-        background-color: var(--light-green);
-    }
-
-    main section .right-arrow:hover,
-    main section .left-arrow:hover {
-        color: var(--gray);
-    }
-
-    main .buy-button:hover {
-        background-color: gold;
-    }
-    
-    header nav > a:hover {
-        color: var(--light-green);
-    }
-}

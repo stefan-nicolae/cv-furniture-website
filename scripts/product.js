@@ -79,6 +79,12 @@ loadProducts().then(res => {
                         `
                     }
                 })
+                const colorsSpan = document.querySelector('.colors');
+
+                if (colorsSpan && colorsSpan.children.length === 0) {
+                colorsSpan.parentNode.removeChild(colorsSpan);
+                }
+
                 document.querySelectorAll(".new-product a").forEach((link) => {
                     link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
                 })
@@ -90,3 +96,4 @@ loadProducts().then(res => {
 document.querySelectorAll(".home-button").forEach(LINK => {
     LINK.setAttribute('href', window.location.href.includes('stefan-nicolae') ? '/cv-furniture-website': '/');
 })
+

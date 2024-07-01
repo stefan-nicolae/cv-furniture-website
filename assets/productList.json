@@ -9,15 +9,15 @@
                 "price": "$120",
                 "images": [
                     {
-                        "src": "./assets/chairs/scaun albastru 1.jpg",
+                        "src": "./assets/chairs/scaun albastru 1_downscaled.jpg",
                         "alt": "side view of our sustainable wooden sky-colored Sky Chair"
                     },
                     {
-                        "src": "./assets/chairs/scaun albastru 2.jpg",
+                        "src": "./assets/chairs/scaun albastru 2_downscaled.jpg",
                         "alt": "front view of our sustainable wooden sky-colored Sky Chair"
                     },
                     {
-                        "src": "./assets/chairs/scaun albastru 3.jpg",
+                        "src": "./assets/chairs/scaun albastru 3_downscaled.jpg",
                         "alt": "back view of our sustainable wooden sky-colored Sky Chair"
                     }
                 ]
@@ -30,15 +30,15 @@
                 "price": "$120",
                 "images": [
                     {
-                        "src": "./assets/chairs/scaun galben 1.jpg",
+                        "src": "./assets/chairs/scaun galben 1_downscaled.jpg",
                         "alt": "side view of our sustainable wooden dark yellow Future Chair"
                     },
                     {
-                        "src": "./assets/chairs/scaun galben 2.jpg",
+                        "src": "./assets/chairs/scaun galben 2_downscaled.jpg",
                         "alt": "front view of our sustainable wooden dark yellow Future Chair"
                     },
                     {
-                        "src": "./assets/chairs/scaun galben 3.jpg",
+                        "src": "./assets/chairs/scaun galben 3_downscaled.jpg",
                         "alt": "back view of our sustainable wooden dark yellow Future Chair"
                     }
                 ]
@@ -51,19 +51,18 @@
                 "price": "$180",
                 "images": [
                     {
-                        "src": "./assets/chairs/scaun lemn vechi 1.jpg",
+                        "src": "./assets/chairs/scaun lemn vechi 1_downscaled.jpg",
                         "alt": "side view of our sustainable Mystic Chair made out of old wood"
                     },
                     {
-                        "src": "./assets/chairs/scaun lemn vechi 2.jpg",
+                        "src": "./assets/chairs/scaun lemn vechi 2_downscaled.jpg",
                         "alt": "front view of our sustainable Mystic Chair made out of old wood"
                     },
                     {
-                        "src": "./assets/chairs/scaun lemn vechi 3.jpg",
+                        "src": "./assets/chairs/scaun lemn vechi 3_downscaled.jpg",
                         "alt": "back view of our sustainable Mystic Chair made out of old wood"
                     }
                 ]
-
             }
         ],
         "sofa": [
@@ -75,15 +74,15 @@
                 "price": "$340",
                 "images": [
                     {
-                        "src": "./assets/sofas/canapea carton 1.jpg",
+                        "src": "./assets/sofas/canapea carton 1_downscaled.jpg",
                         "alt": "front view of our sustainable cardboard Ethereal Sofa"
                     },
                     {
-                        "src": "./assets/sofas/canapea carton 2.jpg",
+                        "src": "./assets/sofas/canapea carton 2_downscaled.jpg",
                         "alt": "side view of our sustainable cardboard Ethereal Sofa"
                     },
                     {
-                        "src": "./assets/sofas/canapea carton 3.jpg",
+                        "src": "./assets/sofas/canapea carton 3_downscaled.jpg",
                         "alt": "back view of our sustainable cardboard Ethereal Sofa"
                     }
                 ]
@@ -96,15 +95,15 @@
                 "price": "$320",
                 "images": [
                     {
-                        "src": "./assets/sofas/canapea cuburi 1.jpg",
+                        "src": "./assets/sofas/canapea cuburi 1_downscaled.jpg",
                         "alt": "front view of our sustainable cotton Geometric Sofa"
                     },
                     {
-                        "src": "./assets/sofas/canapea cuburi 2.jpg",
+                        "src": "./assets/sofas/canapea cuburi 2_downscaled.jpg",
                         "alt": "side view of our sustainable cotton Geometric Sofa"
                     },
                     {
-                        "src": "./assets/sofas/canapea cuburi 3.jpg",
+                        "src": "./assets/sofas/canapea cuburi 3_downscaled.jpg",
                         "alt": "back view of our sustainable cotton Geometric Sofa"
                     }
                 ]
@@ -117,22 +116,22 @@
                 "price": "$340",
                 "images": [
                     {
-                        "src": "./assets/sofas/canapea ratan 1.jpg",
+                        "src": "./assets/sofas/canapea ratan 1_downscaled.jpg",
                         "alt": "front view of our sustainable rattan Tavern Sofa"
                     },
                     {
-                        "src": "./assets/sofas/canapea ratan 2.jpg",
+                        "src": "./assets/sofas/canapea ratan 2_downscaled.jpg",
                         "alt": "side view of our sustainable rattan Tavern Sofa"
                     },
                     {
-                        "src": "./assets/sofas/canapea ratan 3.jpg",
+                        "src": "./assets/sofas/canapea ratan 3_downscaled.jpg",
                         "alt": "back view of our sustainable rattan Tavern Sofa"
                     }
                 ]
             }
         ],
         "table": [
-         {
+            {
                 "name": "Disc Table",
                 "description": "Iusto ipsum quod maxime blanditiis consequatur voluptas. Laborum praesentium aperiam quisquam. Quibusdam nulla incidunt voluptate praesentium consequatur",
                 "materials": "Wood from sustainable sources",
@@ -140,19 +139,19 @@
                 "price": "$180",
                 "images": [
                     {
-                        "src": "./assets/tables/masa 1.jpg",
+                        "src": "./assets/tables/masa 1_downscaled.jpg",
                         "alt": "front view of our sustainable wooden Disc Table, blue"
                     },
                     {
-                        "src": "./assets/tables/masa 2.jpg",
+                        "src": "./assets/tables/masa 2_downscaled.jpg",
                         "alt": "top view of our sustainable wooden Disc Table, blue"
                     },
                     {
-                        "src": "./assets/tables/masa 3.jpg",
+                        "src": "./assets/tables/masa 3_downscaled.jpg",
                         "alt": "top view of our sustainable wooden Disc Table, yellow"
                     },
                     {
-                        "src": "./assets/tables/masa 4.jpg",
+                        "src": "./assets/tables/masa 4_downscaled.jpg",
                         "alt": "front view of our sustainable wooden Disc Table, yellow"
                     }
                 ],
@@ -168,25 +167,24 @@
                 "price": "$340",
                 "images": [
                     {
-                        "src": "./assets/vases/vas 1.jpg",
+                        "src": "./assets/vases/vas 1_downscaled.jpg",
                         "alt": "Top view of our futuristic Techno Vase made out of special sustainable plastic, color blue"
                     },
                     {
-                        "src": "./assets/vases/vas 2.jpg",
+                        "src": "./assets/vases/vas 2_downscaled.jpg",
                         "alt": "front view of our futuristic Techno Vase made out of special sustainable plastic, color blue"
                     },
                     {
-                        "src": "./assets/vases/vas 3.jpg",
+                        "src": "./assets/vases/vas 3_downscaled.jpg",
                         "alt": "front view of our futuristic Techno Vase made out of special sustainable plastic, color orange"
                     },
                     {
-                        "src": "./assets/vases/vas 4.jpg",
+                        "src": "./assets/vases/vas 4_downscaled.jpg",
                         "alt": "top view of our futuristic Techno Vase made out of special sustainable plastic, color orange"
                     }
                 ],
                 "colors": ["#82C7CF", "#D8B59C"]
             }
-            
         ]
     }
 }

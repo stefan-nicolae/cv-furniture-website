@@ -53,6 +53,8 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
                         <div class="info">
                             <h4>${product.name}</h4>
                             <span>${product.materials}</span>
+                                            <span class="flexone"></span>
+
                             <span class="price">${product.price}</span>
                         </div>
                         <a></a>

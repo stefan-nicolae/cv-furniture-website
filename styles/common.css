@@ -1,37 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+@font-face {
+    font-family: 'Helvetica';
+    src: url('HelveticaNeueLight.otf');
+}
+
+@font-face {
+    font-family: 'HelveticaBold';
+    src: url('HelveticaNeueMedium.otf');
+}
+
+
+
 :root {
-    --gray: rgb(219, 219, 219);
-    --dark-gray: rgb(42, 42, 42);
-    --light-green: #9AABA2;
-    --orange: #D09E34;
+    --dark-green: rgb(43, 87, 43);
+    --light-green: rgb(117, 168, 101);
+    --background: rgb(207, 207, 207);
+    --orange: orange;
+    --gray: darkgray;
+    --offwhite: rgb(224, 224, 224);
+    --very-light-green: rgba(117, 168, 101, 0.089);
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Helvetica';
 }
 
 body {
     overflow-x: hidden;
+    user-select: none;
 }
 
 footer {
-    background-color: var(--dark-gray);
-    color: var(--gray);
     display: flex;
     text-align: center;
     justify-content: center;
-    font-family: 'Montserrat', sans-serif;
     padding: 8px 0;
+    color: var(--light-green);
+    background-color: var(--dark-green);
 }
 
 footer a {
     position: absolute;
     left: 24px;
-    color: var(--gray);
     text-decoration: none;
+    color: var(--light-green);
 }
 
 footer a > iconify-icon {

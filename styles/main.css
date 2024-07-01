@@ -3,6 +3,7 @@ header {
     flex-direction: column;
     margin-bottom: -8px;
     position: relative;
+    color: var(--dark-green);
 }
 
 header img {
@@ -21,14 +22,14 @@ header #butterfly img {
 header .round-header-button {
     position: absolute;
     border: none;
-    background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 header .round-header-button img {
     width: 5vw;
-    filter: hue-rotate(270deg) brightness(120%);
+    filter: hue-rotate(300deg) brightness(300%);
 }
 
 header .vase {
@@ -59,20 +60,21 @@ header .dynamic-product-list {
     height: fit-content;
     display: none;
     transform: translateY(-90%);
-    font-family: 'Montserrat', sans-serif;
     z-index: 1;
 }
 
 header .dynamic-product-list .wrapper {
     width: 100%;
-    background-color: var(--light-green);
-    color: var(--dark-gray);
     opacity: 0.8;
     border-radius: 8px;
     transition: all 0.5s;
     overflow-y: scroll;
-    padding: 8px;
     padding-bottom: 0;
+    background-color: var(--background);
+    color: var(--light-green);
+    color: var(--dark-green);
+
+    position: relative;
 }
 
 header .dynamic-product-list .wrapper.selected {
@@ -84,25 +86,38 @@ header .dynamic-product-list .wrapper section {
 }
 
 header .dynamic-product-list .wrapper .title {
-    height: 48px;
-    text-align: center;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    background-color: var(--orange);   
+    color: var(--dark-green);
+    position:sticky;
+    z-index: 2;
+    font-family: helveticabold;
+    font-size: 20px;
 }
 
-header .dynamic-product-list .close {
-    position: absolute;
+header .dynamic-product-list .wrapper .close {
+    color: var(--dark-green);
+    left: 4px;
     cursor: pointer;
     z-index: 2;
+    top: -2px;
+    left: 4;
+    z-index: 3;
+    font-size: 24px;
+    position: fixed;
 }   
 
 header .dyn-list-product {
     display: flex;
-    margin-bottom: 8px;
     cursor: pointer;
     position: relative;
 }
 
 header .dyn-list-product a {
-    background-color: red;
     display: block;
     position: absolute;
     top: 0;
@@ -113,17 +128,29 @@ header .dyn-list-product a {
     z-index: 1;
 }
 
+.dyn-list-product h4 {
+    font-family: helveticabold;
+    font-weight: 100;
+    margin-bottom: 4px !important;
+}
+
 header .dyn-list-product .info {
     padding-left: 8px;
+    padding-top: 8px;
     display: flex;
     flex-direction: column;
+
     max-height: 96px;
     flex: 1;
 }
 
 header .dyn-list-product span.price {
-    align-self: flex-end;
-    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.flexone {
+    flex: 1;
+
 }
 
 header .dyn-list-product img {
@@ -137,20 +164,18 @@ header nav {
     top: 16px;
     display: flex;
     align-items: center;
-    background-color: rgba(64, 64, 64, 0.3);
     padding-left: 24px;
     padding-top: 8px;
     border-radius: 8px 0 0 8px;
 }
 
 header nav a {
+    color: var(--dark-green);
     font-size: 32px;
     margin-right: 16px;
-    color: white;
 }
 
 header nav a#about-us {
-    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     font-size: 16px;
     margin-right: 32px;
@@ -166,54 +191,53 @@ header nav a#about-us iconify-icon {
 
 header .header-title {
     position: absolute;
-    top: 5vw;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    left: 25vw;
-    pointer-events: none;
+    left: 33vw;
+    top:9.3vw;
+    opacity: 0.8;
 }
+
+
 
 header h1 {
-    font-weight: bold;
-    text-shadow: 5px 5px 5px var(--gray);
-}
+    font-size: 5.5vw;
+    margin-bottom: 1vw;
+    margin-top: 1vw;;
+    line-height: 2.8vw;
 
-header h2 {
-    text-shadow: 5px 5px 5px var(--gray);
-}
-
-header h1 {
-    font-size: 96px;
 }
 header h2 {
-    font-size: 32px;
+    margin-left: 1vw;
+    font-size: 2vw;
 }
 
 article {
-    background-color: var(--gray);
+    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, var(--light-green) 100%); 
     padding: 96px 24px;
-    color: var(--dark-gray);
     min-height: 480px;
+    color: var(--dark-green)
 }
 
 article div {
     max-width: 1200px;
     margin: auto;
-    padding: 24px;
+    font-size: 20px;
+    line-height: 24px;
 }
 
 article div:first-of-type {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
 
-article p {
-    font-family: 'Montserrat', sans-serif;
+article strong {
+    font-weight: normal;
+    font-family: helveticabold;
 }
+
 
 section.testimonials {
-    background-color: var(--light-green);
     position: relative;
     margin: auto;
+    background-color: var(--light-green);
 }
 
 section.testimonials > h1 {
@@ -221,8 +245,7 @@ section.testimonials > h1 {
     top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    color: var(--offwhite);
 }
 
 section.testimonials .left-arrow, 
@@ -231,6 +254,7 @@ section.testimonials .right-arrow {
     top: 24px;
     cursor: pointer;
     font-size: 24px;
+    color: var(--offwhite);
 }
 
 section.testimonials .left-arrow {
@@ -259,26 +283,30 @@ section.testimonials .testimonial {
     width: fit-content;
     position: relative;
     perspective: 1500px;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--gray);
     margin-right: 344px;
-    user-select: none;
+    color: var(--offwhite);
+    opacity: 0.7;
+}
+
+section.testimonials .testimonial:hover {
+    opacity: 1;
 }
 
 section.testimonials .testimonial .page1 {
-    background-color: var(--dark-gray);
     width: 320px;
     height: 320px;
     text-align: center;
     padding: 24px;
     border-radius: 16px 0 0 16px;
+    background-color: var(--dark-green);
+    border-right: 2px solid #ffffff69;
 }
 
 section.testimonials .testimonial .page1 img:first-of-type {
     width: 96px;
     height: 96px;
     border-radius: 1000px;
-    background-color: white;
+    background-color: var(--offwhite);
 }
 
 section.testimonials .testimonial .page1 img:last-of-type {
@@ -287,6 +315,11 @@ section.testimonials .testimonial .page1 img:last-of-type {
 
 section.testimonials .testimonial .page1 > * {
     margin-bottom: 8px;
+    
+}
+
+section.testimonials .testimonial .page1 iconify-icon {
+    color: var(--orange);
 }
 
 section.testimonials .testimonial .page2 {
@@ -298,6 +331,7 @@ section.testimonials .testimonial .page2 {
 }
 
 section.testimonials .testimonial .page2-content {
+    background-color: var(--dark-green);
     backface-visibility: hidden;
     width: 320px;
     transform: rotateY(180deg);
@@ -305,14 +339,11 @@ section.testimonials .testimonial .page2-content {
     height: 320px;
     position: absolute;
     top: 0;
-    background-color: var(--dark-gray);
-    border-left: 1px solid rgba(219, 219, 219, 0.3);
     border-radius: 0 16px 16px 0;
 }
 
 section.testimonials .testimonial .page2-content-back {
     backface-visibility: hidden;
-    background-color: var(--gray);
     width: 320px;
     padding: 24px;
     height: 320px;
@@ -320,6 +351,8 @@ section.testimonials .testimonial .page2-content-back {
     top: 0;
     text-align: center;
     border-radius: 16px 0 0 16px;
+    background-color: var(--orange);
+    color: var(--dark-green)
 } 
 
 section.testimonials .testimonial .page2-content span {
@@ -331,29 +364,28 @@ section.testimonials .testimonial .page2-content-back span {
     margin-top: 64px;
     display: block;
     font-size: larger;
-    color: var(--dark-gray)
 }
 
 .popup {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background-color: var(--light-green);
-    color: white;
     padding: 24px;
     width: 320px;
-    font-family: 'Montserrat', sans-serif;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 5px 5px 10px rgba(28, 28, 28, 0.3);
-    animation: 5s ease-in slidein;
+    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 0.1);
+    /* animation: 5s ease-in slidein; */
+    background-color: var(--background);
+    opacity: 0.7;
+    color: var(--dark-green);
 }
 
 @keyframes slidein {
     from {
         transform: translateX(200%);        
     }
-
+    
     to {
         transform: translateY(0);
     }
@@ -365,7 +397,7 @@ section.testimonials .testimonial .page2-content-back span {
 }
 
 .popup span {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .popup span#close {
@@ -377,166 +409,15 @@ section.testimonials .testimonial .page2-content-back span {
 }
 
 
-@media only screen and (min-width: 601px) and (max-width: 992px) {
-    header #butterfly img {
-        height: 4vw;
-    }
 
-    .dynamic-product-list {
-        min-width: 320px !important;
-    }
 
-    .dyn-list-product .info {
-        font-size: 80% !important;
-    }
-
-    header .round-header-button img {
-        width: 7vw;
-    }
-
-    header h1 {
-        font-size: 64px;
-    }
-
-    header h2 {
-        font-size: 16px;
-    }
-
-    header .header-title {
-        top: 96px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    header #butterfly img {
-        height: 6vw;
-    }
-
-    header .dynamic-product-list {
-        width: calc(100% - 48px);
-        min-width: unset;
-        max-height: unset; 
-        height: 240px;
-        transform: translateY(30vw);
-        bottom: 0;
-        left: 24px;
-    }
-
-    header nav a {
-        font-size: 24px;
-        margin-right: 8px;
-    }
-
-    header .round-header-button img {
-        width: 13vw;
-    }
-
-    header .dynamic-product-list .wrapper {
-        opacity: 1;
-    }
-
-    header .header-title {
-        left: 32px;
-        top: 32px;
-    }
-    
-    header h1 {
-        font-size: 32px;
-    }
-    
-    header h2 {
-        display: none;
-    }
-
-    header nav a#about-us {
-        margin-left: -16px;
-        margin-right: 16px;
-    }
-
-    header nav a#about-us > span {
-        display: none;
-    }
-
-    article div {
-        margin: auto;
-        max-width: 100%;
-        padding: 8px;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    section.testimonials .testimonials-scroll {
-        padding-right: 0;
-    }
-
-    section.testimonials .testimonial {
-        margin-right: 300px;
-    }
-
-    section.testimonials .testimonial .page1 {
-        width: 240px;
-        height: 240px;
-        font-size: 70%;
-    }
-
-    section.testimonials .testimonial .page1 img:first-of-type {
-        width: 64px;
-        height: 64px;
-    }
-
-    section.testimonials .testimonial .page1 img:last-of-type {
-        height: 64px;
-    }
-
-    section.testimonials .testimonial .page2 {
-        width: 480px;
-    }
-
-    section.testimonials .testimonial .page2-content {
-        width: 240px;
-        height: 240px;
-    }
-
-    section.testimonials .testimonial .page2-content-back {
-        width: 240px;
-        height: 240px;
-    }
-}
-
-@media(hover: hover) {
     header .round-header-button img:hover {
         transform: rotate(360deg);
         transition: ease-in 0.5s;
     }
     
-    .popup span#close:hover
-    {
-        color: rgb(193, 227, 249)
-    }
-    
-    .popup:hover {
-        background-color: rgb(225, 200, 204);
-        color: var(--dark-gray);
-    }
-    
-    section.testimonials .left-arrow:hover,
-    section.testimonials .right-arrow:hover {
-        color: var(--gray);
-    }
-    
-    header nav a#about-us:hover {
-        color: white;
-    }
+
     
     header nav a#about-us:hover iconify-icon {
         margin-bottom: -8px;
     }
-    
-    header nav a:hover {
-        color: var(--light-green);
-    }
-    
-    header .dyn-list-product:hover {
-        color: var(--gray);
-    }
-}
