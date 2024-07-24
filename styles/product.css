@@ -2,6 +2,12 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    position: relative;
+}
+
+footer {
+    position: relative;
+    margin-top: -40px;
 }
 
 header {
@@ -10,7 +16,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--very-light-green);
     position: fixed;
     z-index: 5;
 }
@@ -52,7 +57,8 @@ main {
     display: flex;
     margin: auto;
     margin-top: 128px;
-    position: relative;    color: var(--dark-green);
+    position: relative;    
+    color: var(--black);
     margin-bottom: 256px;
 }
 
@@ -124,8 +130,8 @@ main .buy-button {
     font-size: 24px;
     font-family: helveticabold;
     cursor: pointer;
-    background-color: var(--dark-green);
-    color: var(--orange)
+    color: var(--light-green);
+    background-color: rgb(38, 84, 38);
 
 }
 
@@ -169,7 +175,6 @@ section.other-furniture {
     flex: 1;
     width: 100%;
     color: var(--dark-green);
-    background-color: var(--very-light-green);
     padding-bottom: 48px;
 }
 

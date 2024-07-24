@@ -21,7 +21,8 @@
     --offwhite: rgb(224, 224, 224);
     --very-light-green: rgba(240, 255, 235, 0.799);
     --hundred: calc(100vw - var(--scrollbarWidth));
-    --fifty: calc(var(--hundred)/2)
+    --fifty: calc(var(--hundred)/2);
+    --black: rgb(31, 31, 31);
 }
 
 * {
@@ -35,6 +36,7 @@ body {
     overflow-x: hidden;
     user-select: none;
     line-height: 1.5 !important;
+    position: relative;
 }
 
 footer {
@@ -42,18 +44,17 @@ footer {
     text-align: center;
     justify-content: center;
     padding: 8px 0;
-    color: var(--light-green);
-    background-color: var(--dark-green);
-    position: fixed;
-    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.069);
     width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 footer a {
     position: absolute;
     left: 24px;
     text-decoration: none;
-    color: var(--light-green);
+    color: var(--black);
 }
 
 footer a > iconify-icon {
@@ -62,7 +63,7 @@ footer a > iconify-icon {
 }
 
 .left-arrow:hover, .right-arrow:hover {
-    color: var(--orange) !important;
+    color: var(--offwhite) !important;
 }
 
 header a:hover {

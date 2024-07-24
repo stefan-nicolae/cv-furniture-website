@@ -10,22 +10,65 @@ let cursorOutsideProductList = true
 let dynSelectedClass = ""
 let PRODUCTS = []
 
+
+function topList() {
+    return dynamicProductList.getBoundingClientRect().top
+}
+
 loadProducts().then(res => {
     PRODUCTS = res
 })
-document.onmousemove = e => {
-    const rect = dynamicProductList.getBoundingClientRect()
-    if(e.clientX >= rect.x && e.clientX <= rect.x + rect.width &&
-       e.clientY >= rect.y && e.clientY <= rect.y + rect.height
-        ) 
-    {
-        dynamicProductListWrapper.classList.add("selected")
-        cursorOutsideProductList = false
-    } else {
-        dynamicProductListWrapper.classList.remove("selected")
-        cursorOutsideProductList = true
+// document.onmousemove = e => {
+//     const rect = dynamicProductList.getBoundingClientRect()
+//     if(e.clientX >= rect.x && e.clientX <= rect.x + rect.width &&
+//        e.clientY >= rect.y && e.clientY <= rect.y + rect.height
+//         ) 
+//     {
+//         dynamicProductListWrapper.classList.add("selected")
+//         cursorOutsideProductList = false
+//     } else {
+//         dynamicProductListWrapper.classList.remove("selected")
+//         cursorOutsideProductList = true
+//     }
+// }
+
+document.onmousemove = (e) => {
+    const dynamicProductList = document.querySelector('#dynamicProductList'); // Ensure this points to your element
+    const dynamicProductListWrapper = document.querySelector('#dynamicProductListWrapper'); // Ensure this points to the correct wrapper element
+
+    if (dynamicProductList) {
+        const rect = dynamicProductList.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(dynamicProductList);
+
+        // Extract the margins
+        const marginTop = parseFloat(computedStyle.marginTop);
+        const marginLeft = parseFloat(computedStyle.marginLeft);
+        const marginRight = parseFloat(computedStyle.marginRight);
+        const marginBottom = parseFloat(computedStyle.marginBottom);
+
+        // Adjust the rect values to exclude margins
+        const adjustedRect = {
+            x: rect.x + marginLeft,
+            y: rect.y + marginTop,
+            width: rect.width - (marginLeft + marginRight),
+            height: rect.height - (marginTop + marginBottom)
+        };
+
+        if (
+            e.clientX >= adjustedRect.x &&
+            e.clientX <= adjustedRect.x + adjustedRect.width &&
+            e.clientY >= adjustedRect.y &&
+            e.clientY <= adjustedRect.y + adjustedRect.height
+        ) {
+            dynamicProductListWrapper.classList.add("selected");
+            cursorOutsideProductList = false;
+        } else {
+            dynamicProductListWrapper.classList.remove("selected");
+            cursorOutsideProductList = true;
+        }
     }
-}
+};
+
 
 document.onclick = e => {
     if(cursorOutsideProductList) 
@@ -40,6 +83,7 @@ document.querySelector(".dynamic-product-list .close")
 document.querySelectorAll(".round-header-button").forEach(headerButton => {
     headerButton.addEventListener("click", e => {
         e.stopPropagation()
+        dynamicProductList.style.marginTop = 0
 
         dynamicProductList.classList.remove(dynamicProductList.classList[1])
         dynamicProductList.classList.add(headerButton.classList[0])
@@ -64,10 +108,12 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
             dynamicProductListWrapper.append()
         }
         else {
-            if(dynamicProductList.style.display !== "flex") 
+            if(dynamicProductList.style.display !== "flex") {
                 dynamicProductList.style.display = "flex"
-            else
+            }
+            else {
                 dynamicProductList.style.display = "none"
+            }
         }
         dynSelectedClass = dynamicProductList.classList[1]
 
@@ -82,10 +128,15 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
                 if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
             }
 
+            console.log(topList())
+            if((topList()) < 0) dynamicProductList.style.marginTop = -topList() + 10 + "px"
+
             document.querySelectorAll(".dyn-list-product a").forEach((link) => {
                 link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
             })
         }
+
+
     })
 })
 

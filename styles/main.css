@@ -29,7 +29,7 @@ header .round-header-button {
 
 header .round-header-button img {
     width: 5vw;
-    filter: hue-rotate(300deg) brightness(300%);
+    filter: hue-rotate(300deg) brightness(140%);
 }
 
 header .vase {
@@ -61,20 +61,24 @@ header .dynamic-product-list {
     display: none;
     transform: translateY(-90%);
     z-index: 1;
+    min-height: 132px;
+
 }
 
 header .dynamic-product-list .wrapper {
     width: 100%;
-    opacity: 0.7;
+    opacity: 0.8;
     border-radius: 8px;
     transition: all 0.5s;
     overflow-y: scroll;
     padding-bottom: 0;
-    background-color: var(--background);
-    color: var(--light-green);
-    color: var(--dark-green);
-
+    background-color: var(--offwhite);
+    color: var(--black);
     position: relative;
+}
+
+header .dynamic-product-list .wrapper:hover {
+    opacity: 1;
 }
 
 header .dynamic-product-list .wrapper.selected {
@@ -91,16 +95,16 @@ header .dynamic-product-list .wrapper .title {
     justify-content: center;
     align-items: center;
     top: 0;
-    background-color: var(--orange);   
+    background-color: var(--background);
     color: var(--dark-green);
     position:sticky;
     z-index: 2;
     font-family: helveticabold;
     font-size: 20px;
+    color: var(--black);
 }
 
 header .dynamic-product-list .wrapper .close {
-    color: var(--dark-green);
     left: 4px;
     cursor: pointer;
     z-index: 2;
@@ -109,6 +113,7 @@ header .dynamic-product-list .wrapper .close {
     z-index: 3;
     font-size: 24px;
     position: fixed;
+    color: var(--black);
 }   
 
 header .dyn-list-product {
@@ -148,8 +153,8 @@ header .dyn-list-product span.price {
     margin-bottom: 8px;
 }
 
-header .dyn-list-product:hover {
-    color: var(--light-green)
+header .dyn-list-product:hover .info{
+    filter:brightness(3)
 }
 
 .flexone {
@@ -215,10 +220,10 @@ header h2 {
 }
 
 article {
-    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, var(--light-green) 100%); 
+    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, var(--orange) 100%); 
     padding: 256px 24px;
     min-height: 480px;
-    color: var(--dark-green);
+    color: var(--black);
 }
 
 article div {
@@ -240,7 +245,7 @@ article strong {
 section.testimonials {
     position: relative;
     margin: auto;
-    background-color: var(--light-green);
+    background-color: var(--orange);
 }
 
 section.testimonials > h1 {
@@ -248,7 +253,7 @@ section.testimonials > h1 {
     top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--offwhite);
+    color: var(--black);
 }
 
 section.testimonials .left-arrow, 
@@ -257,7 +262,7 @@ section.testimonials .right-arrow {
     top: 24px;
     cursor: pointer;
     font-size: 24px;
-    color: var(--offwhite);
+    color: var(--black);
 }
 
 section.testimonials .left-arrow {
@@ -286,7 +291,6 @@ section.testimonials .testimonial {
     height: fit-content;
     width: fit-content;
     position: relative;
-    color: var(--offwhite);
     opacity: 0.7;
 }
 
@@ -318,7 +322,8 @@ section.testimonials .testimonial .page1 {
     text-align: center;
     padding: 12px;
     border-radius: 16px 0 0 16px;
-    background-color: var(--dark-green);
+    background-color: var(--offwhite);
+    color: var(--black);
     border-right: 2px solid #ffffff69;
     display: flex;
     flex-direction: column;
@@ -350,7 +355,8 @@ section.testimonials .testimonial .page2 {
 }
 
 section.testimonials .testimonial .page2-content {
-    background-color: var(--dark-green);
+    background-color: var(--offwhite);
+    color: var(--black);
     backface-visibility: hidden;
     transform: rotateY(180deg);
     padding: 24px;
@@ -360,14 +366,14 @@ section.testimonials .testimonial .page2-content {
 }
 
 section.testimonials .testimonial .page2-content-back {
+    background-color: var(--black);
     backface-visibility: hidden;
     padding: 24px;
     position: absolute;
     top: 0;
     text-align: center;
     border-radius: 16px 0 0 16px;
-    background-color: var(--orange);
-    color: var(--dark-green)
+    color: var(--orange)
 } 
 
 section.testimonials .testimonial .page2-content span {
@@ -390,8 +396,7 @@ section.testimonials .testimonial .page2-content-back span {
     box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 0.1);
     animation: 5s ease-in slidein;
     background-color: var(--background);
-    opacity: 0.7;
-    color: var(--dark-green);
+    color: var(--black);
 }
 
 .popup:hover {
@@ -435,20 +440,20 @@ header nav a#about-us:hover iconify-icon {
 }
 
 .close:hover, #close:hover {
-    color: var(--light-green) !important;
+    color: var(--offwhite) !important;
 }
 
 
 /* Styles for tablets in landscape mode */
 @media only screen and (max-width: 1000px)  {
     header .round-header-button img {
-        width: 10vw;
+        width: 7vw;
     }
     
     header .dynamic-product-list  {
         bottom: -4000px;  
         left: 8px;  
-        min-height: 132px;
+        font-size: 90%;
     }
 
     header .dynamic-product-list .wrapper {
@@ -464,7 +469,7 @@ header nav a#about-us:hover iconify-icon {
     }
 
     header .header-title {
-        top: 5vw;
+        top: 12vw;
     }
 
     header .header-title h1 {
@@ -474,9 +479,10 @@ header nav a#about-us:hover iconify-icon {
 
     header .header-title h2 {
         position: absolute;
-        bottom: -40vw;
-        left: -30vw;
-        font-size: 5vw;
+        bottom: -30.5vw;
+        left: -18vw;
+        font-size: 3vw;
+        line-height: 3.8vw;
     }
 
     header nav {
