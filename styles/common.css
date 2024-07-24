@@ -16,10 +16,12 @@
     --dark-green: rgb(43, 87, 43);
     --light-green: rgb(117, 168, 101);
     --background: rgb(207, 207, 207);
-    --orange: orange;
+    --orange: #D8B59C;
     --gray: darkgray;
     --offwhite: rgb(224, 224, 224);
-    --very-light-green: rgba(117, 168, 101, 0.089);
+    --very-light-green: rgba(240, 255, 235, 0.799);
+    --hundred: calc(100vw - var(--scrollbarWidth));
+    --fifty: calc(var(--hundred)/2)
 }
 
 * {
@@ -32,6 +34,7 @@
 body {
     overflow-x: hidden;
     user-select: none;
+    line-height: 1.5 !important;
 }
 
 footer {
@@ -41,6 +44,9 @@ footer {
     padding: 8px 0;
     color: var(--light-green);
     background-color: var(--dark-green);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer a {
@@ -55,14 +61,16 @@ footer a > iconify-icon {
     margin-left: 4px;
 }
 
+.left-arrow:hover, .right-arrow:hover {
+    color: var(--orange) !important;
+}
+
+header a:hover {
+    color: var(--light-green);
+}
+
 @media only screen and (max-width: 600px) {
     footer {
         font-size: 12px;
-    }
-}
-
-@media (hover: hover) {
-    footer a:hover {
-        color: var(--light-green);
     }
 }

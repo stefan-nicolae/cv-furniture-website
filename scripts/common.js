@@ -6,11 +6,18 @@ export async function loadProducts() {
     .then(data => data.products)
 }
 
-export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, 
-        snap=false, tracker=undefined, IMAGES=undefined, BIG_IMAGE=undefined) {
-
+export function activateSlider(slider, leftArrow, rightArrow, getscrollWidth, getSnap, tracker=undefined, IMAGES=undefined, BIG_IMAGE=undefined) {
+    let scrollWidth = getscrollWidth()
+    let snap = getSnap()
+    onresize = () => {
+        scrollWidth = getscrollWidth()
+        snap = getSnap()
+    }
     let isDown = false, startX, scrollLeft, startTime, index=0
 
+    //it takes in #big-image, an element located in the slideshow div, in products.html
+    //it then crops it and fits it in the middle of the cursor.
+    //it runs on the mouse listener & in the toggleBigImage func
     const calculateBigImage = (XY) => {
         if(BIG_IMAGE) {
             const cropX = 128, cropY = 128
@@ -23,6 +30,8 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         }
     }
 
+    //this calculates the cursor params in calculateBigImage()
+    //takes in mousemove or touchmove as e
     const getBigImageXY = e => {
         const X = e.layerX !== undefined ? e.layerX : e.changedTouches[0].clientX
         const Y = e.layerY !== undefined ? e.layerY : e.changedTouches[0].clientY
@@ -32,6 +41,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         return [cursorX, cursorY]
     }
 
+    //works on doubleclick, makes bigimage visible and runs the calculate for the first time.
     const toggleBigImage = e => {
         if(BIG_IMAGE) {
             if(BIG_IMAGE.style.display === "block") {
@@ -47,7 +57,8 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         }
     }
 
-    if(snap) {
+
+    if( IMAGES) {
         const imageResize = () => {
             IMAGES.forEach(img => {
                 img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
@@ -75,7 +86,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     }
 
     rightArrow.addEventListener("click", e => {
-        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         if(BIG_IMAGE) BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: scrollWidth,
@@ -84,7 +94,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     });
 
     leftArrow.addEventListener("click", e => {
-        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         if(BIG_IMAGE) BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: -scrollWidth,
@@ -128,32 +137,39 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
                 })
             }
             else {
-                const delta = slider.scrollLeft%e.currentTarget.clientWidth
-                if(delta <= e.currentTarget.clientWidth/2) slider.scrollBy({
+                const delta = slider.scrollLeft%scrollWidth
+                if(delta <= scrollWidth/2) slider.scrollBy({
                     left: -delta,
                     behavior: "smooth"
                 }) 
                 else slider.scrollBy({
-                    left: -delta + e.currentTarget.clientWidth,
+                    left: -delta + scrollWidth,
                     behavior: "smooth"
                 }) 
             }
         });
     });
 
+    //Let's start with this. 
     ['mousemove', 'touchmove'].forEach(evt => {
         slider.addEventListener(evt, e => {
+            //get mouse X position
             const X = e.pageX !== undefined ? e.pageX : e.changedTouches[0].clientX
+            //calc big image if it's displayed
             calculateBigImage(getBigImageXY(e))
+            //if the mouse isnt down. This gets set at the "on press" and "on release" listenersx
+            //otherwise you'd slide the thing just with the cursor
             if(!isDown) return
+            //if the image is up, you aren't allowed to slide the thing
             if(BIG_IMAGE && BIG_IMAGE.style.display !== "none") return
-            const x = X - slider.offsetLeft
+            
             let multiplier = 1
-            if(window.innerWidth <= 600) {
-                multiplier = 0.1
-            }
-            if(snap) multiplier = 2
-            const walk = (x - startX) * multiplier
+            //if it snaps, the thing scrolls 2x as much as usual with the same mouse movement. 
+            if(snap) multiplier = 2 
+            console.log(X)
+            //X is the coordinate that moves with the cursor, startX is the cursor X before the dragging.
+            const walk = (X - startX) * multiplier
+            //walk are the coordinates of the mouse and scrollLeft is what's already been scrolled
             slider.scrollLeft = scrollLeft - walk
         })
     });

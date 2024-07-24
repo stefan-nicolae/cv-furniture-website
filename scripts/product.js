@@ -11,7 +11,7 @@ const tracker = document.querySelector("section .tracker")
 let PRODUCTS
 loadProducts().then(res => {
     PRODUCTS = res
-    PRODUCTS[productCategory].forEach(product => {
+    if(PRODUCTS[productCategory]) PRODUCTS[productCategory].forEach(product => {
         if(product.name === productName) {
             document.title = `${productName} - Floriana Furniture`
             product.images.forEach(image => {
@@ -48,14 +48,18 @@ loadProducts().then(res => {
                         colorSpan.classList.add("selected")
                     })  
                 })
+            } 
+
+            function getScrollWidth (){
+                return document.querySelector("section").clientWidth
             }
 
             activateSlider(
                 document.querySelector(".slideshow"),
                 document.querySelector("section .left-arrow"),
                 document.querySelector("section .right-arrow"),
-                document.querySelector("section").clientWidth,
-                true,
+                getScrollWidth,
+                () => true,
                 tracker,
                 document.querySelectorAll(".scroll-div img"),
                 document.querySelector("#big-image")

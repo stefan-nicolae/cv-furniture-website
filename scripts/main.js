@@ -145,17 +145,42 @@ butterfly.addEventListener("mouseenter", e => {
     })
 })
 
+function getScrollWidth() {
+    return window.matchMedia('(max-width: 1000px)').matches ? window.innerWidth - getScrollbarWidth() + 25 : 
+        document.querySelector(".testimonial").offsetWidth * 2
+}
+
+function getSnap() {
+    return window.matchMedia('(max-width: 1000px)').matches
+}
+
 activateSlider(
     document.querySelector(".testimonials .testimonials-scroll"), 
     document.querySelector(".testimonials .left-arrow"), 
-    document.querySelector(".testimonials .right-arrow")
+    document.querySelector(".testimonials .right-arrow"),
+    getScrollWidth,
+    getSnap
 )
-          
+      
 if(sessionStorage.getItem("popup-closed") === "true") {
     document.querySelector(".popup").style.display = "none"
 }
 
 document.querySelector(".popup #close").addEventListener("click", e => {
-    sessionStorage.setItem("popup-closed", "true")
+    sessionStorage.setItem("popup-closed", "true")      
     e.currentTarget.parentElement.style.display = "none"
 })
+
+function getScrollbarWidth() {
+    const container = document.createElement('div');
+    container.style.overflow = 'scroll';
+    container.style.width = '50px';
+    container.style.height = '50px';
+    document.body.appendChild(container);
+    const scrollbarWidth = container.offsetWidth - container.clientWidth;
+    document.body.removeChild(container);
+    return scrollbarWidth;
+}
+
+const scrollbarWidth = getScrollbarWidth();
+document.documentElement.style.setProperty('--scrollbarWidth', `${scrollbarWidth}px`);

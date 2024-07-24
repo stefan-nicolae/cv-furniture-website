@@ -56,7 +56,7 @@ header .dynamic-product-list {
     position: absolute;
     width: 30vw;
     min-width: 480px;
-    max-height: 20vw;
+    max-height: 176px;
     height: fit-content;
     display: none;
     transform: translateY(-90%);
@@ -65,7 +65,7 @@ header .dynamic-product-list {
 
 header .dynamic-product-list .wrapper {
     width: 100%;
-    opacity: 0.8;
+    opacity: 0.7;
     border-radius: 8px;
     transition: all 0.5s;
     overflow-y: scroll;
@@ -148,6 +148,10 @@ header .dyn-list-product span.price {
     margin-bottom: 8px;
 }
 
+header .dyn-list-product:hover {
+    color: var(--light-green)
+}
+
 .flexone {
     flex: 1;
 
@@ -193,35 +197,34 @@ header .header-title {
     position: absolute;
     left: 33vw;
     top:9.3vw;
-    opacity: 0.8;
+    opacity: 0.7;
 }
-
 
 
 header h1 {
     font-size: 5.5vw;
     margin-bottom: 1vw;
-    margin-top: 1vw;;
+    margin-top: 1vw;
     line-height: 2.8vw;
-
 }
+
 header h2 {
     margin-left: 1vw;
     font-size: 2vw;
+    line-height: normal;
 }
 
 article {
     background: linear-gradient(180deg, rgb(255, 255, 255) 0%, var(--light-green) 100%); 
-    padding: 96px 24px;
+    padding: 256px 24px;
     min-height: 480px;
-    color: var(--dark-green)
+    color: var(--dark-green);
 }
 
 article div {
     max-width: 1200px;
     margin: auto;
     font-size: 20px;
-    line-height: 24px;
 }
 
 article div:first-of-type {
@@ -233,7 +236,7 @@ article strong {
     font-family: helveticabold;
 }
 
-
+/* get rid of the margins in phone mode*/
 section.testimonials {
     position: relative;
     margin: auto;
@@ -279,11 +282,10 @@ section.testimonials .testimonials-scroll.active{
 }
 
 section.testimonials .testimonial {
+    perspective: 1500px;
     height: fit-content;
     width: fit-content;
     position: relative;
-    perspective: 1500px;
-    margin-right: 344px;
     color: var(--offwhite);
     opacity: 0.7;
 }
@@ -292,14 +294,35 @@ section.testimonials .testimonial:hover {
     opacity: 1;
 }
 
+
+                                    section.testimonials .testimonial {
+                                        margin-right: calc(320px + 24px)
+                                    }
+
+                                    section.testimonials .testimonial .page1, 
+                                    section.testimonials .testimonial .page2,
+                                    section.testimonials .testimonial .page2-content,
+                                    section.testimonials .testimonial .page2-content-back {
+                                        width: 320px;
+                                        height: 320px;
+                                    }
+
+                                    section.testimonials .testimonial .page2 {
+                                        width: calc(320px * 2)
+                                    }
+
+
+
+
 section.testimonials .testimonial .page1 {
-    width: 320px;
-    height: 320px;
     text-align: center;
-    padding: 24px;
+    padding: 12px;
     border-radius: 16px 0 0 16px;
     background-color: var(--dark-green);
     border-right: 2px solid #ffffff69;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 section.testimonials .testimonial .page1 img:first-of-type {
@@ -307,15 +330,12 @@ section.testimonials .testimonial .page1 img:first-of-type {
     height: 96px;
     border-radius: 1000px;
     background-color: var(--offwhite);
+    margin: auto;
 }
 
 section.testimonials .testimonial .page1 img:last-of-type {
-    height: 96px;
-}
-
-section.testimonials .testimonial .page1 > * {
-    margin-bottom: 8px;
-    
+    height: 48px;
+    margin: auto;
 }
 
 section.testimonials .testimonial .page1 iconify-icon {
@@ -323,20 +343,17 @@ section.testimonials .testimonial .page1 iconify-icon {
 }
 
 section.testimonials .testimonial .page2 {
-    width: 640px;
-    height: 320px;
     position: absolute;
     top: 0;
     transform-style: preserve-3d;
+    font-size: 20px;
 }
 
 section.testimonials .testimonial .page2-content {
     background-color: var(--dark-green);
     backface-visibility: hidden;
-    width: 320px;
     transform: rotateY(180deg);
     padding: 24px;
-    height: 320px;
     position: absolute;
     top: 0;
     border-radius: 0 16px 16px 0;
@@ -344,9 +361,7 @@ section.testimonials .testimonial .page2-content {
 
 section.testimonials .testimonial .page2-content-back {
     backface-visibility: hidden;
-    width: 320px;
     padding: 24px;
-    height: 320px;
     position: absolute;
     top: 0;
     text-align: center;
@@ -356,12 +371,10 @@ section.testimonials .testimonial .page2-content-back {
 } 
 
 section.testimonials .testimonial .page2-content span {
-    margin-top: 64px;
     display: block;
 }
 
 section.testimonials .testimonial .page2-content-back span {
-    margin-top: 64px;
     display: block;
     font-size: larger;
 }
@@ -375,10 +388,14 @@ section.testimonials .testimonial .page2-content-back span {
     text-align: center;
     border-radius: 8px;
     box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 0.1);
-    /* animation: 5s ease-in slidein; */
+    animation: 5s ease-in slidein;
     background-color: var(--background);
     opacity: 0.7;
     color: var(--dark-green);
+}
+
+.popup:hover {
+    opacity: 1;
 }
 
 @keyframes slidein {
@@ -408,16 +425,115 @@ section.testimonials .testimonial .page2-content-back span {
     cursor: pointer;
 }
 
+header .round-header-button img:hover {
+    transform: rotate(360deg);
+    transition: ease-in 0.5s;
+}
+
+header nav a#about-us:hover iconify-icon {
+    margin-bottom: -8px;
+}
+
+.close:hover, #close:hover {
+    color: var(--light-green) !important;
+}
 
 
-
-    header .round-header-button img:hover {
-        transform: rotate(360deg);
-        transition: ease-in 0.5s;
+/* Styles for tablets in landscape mode */
+@media only screen and (max-width: 1000px)  {
+    header .round-header-button img {
+        width: 10vw;
     }
     
-
-    
-    header nav a#about-us:hover iconify-icon {
-        margin-bottom: -8px;
+    header .dynamic-product-list  {
+        bottom: -4000px;  
+        left: 8px;  
+        min-height: 132px;
     }
+
+    header .dynamic-product-list .wrapper {
+        width: 80vw;
+    }
+
+    section.testimonials .testimonial:last-of-type {
+        margin-right: 310px;
+    }
+    
+    header > h1 {
+      background-color: lightcoral;
+    }
+
+    header .header-title {
+        top: 5vw;
+    }
+
+    header .header-title h1 {
+        font-size: 9vw;
+        line-height: 5vw;  
+    }
+
+    header .header-title h2 {
+        position: absolute;
+        bottom: -40vw;
+        left: -30vw;
+        font-size: 5vw;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    article {
+        padding: 96px 20px;
+    }
+
+    article div {
+        font-size: 18px;
+    }
+    
+    section.testimonials .testimonial {
+        margin-right: calc(var(--fifty) + 24px);
+        margin-left: 24px;
+    }
+
+    section.testimonials .testimonial .page1, 
+    section.testimonials .testimonial .page2,
+    section.testimonials .testimonial .page2-content,
+    section.testimonials .testimonial .page2-content-back {
+        width: calc(var(--fifty) - 24px);
+        height: 240px;
+    }
+
+    section.testimonials .testimonial .page2 {
+        width: calc((var(--fifty) - 24px)* 2);
+        font-size: 16px;
+    }
+
+    section.testimonials .testimonials-scroll {
+        padding: 96px 0;
+        padding-right: 0;
+    }
+
+    section.testimonials .testimonial .page1 {
+        padding: 4px;
+    }
+    
+    section.testimonials .testimonial .page1 img:last-of-type {
+        height: 48px;
+    }
+}
+  
+/* Styles for tablets in portrait mode */
+@media only screen and (max-width: 768px){
+    header > h1  {
+      background-color: lightgreen;
+    }
+}
+
+/* Styles for phones */
+@media only screen and (max-width: 600px) {
+    header > h1  {
+      background-color: lightblue;
+    }
+}
+  
