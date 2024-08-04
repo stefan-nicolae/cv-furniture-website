@@ -227,6 +227,8 @@ article {
 }
 
 article div {
+    text-align: justify;
+    text-justify: inter-word;
     max-width: 1200px;
     margin: auto;
     font-size: 20px;
@@ -246,6 +248,8 @@ section.testimonials {
     position: relative;
     margin: auto;
     background-color: var(--orange);
+    overflow-x: hidden;
+
 }
 
 section.testimonials > h1 {
@@ -443,7 +447,6 @@ header nav a#about-us:hover iconify-icon {
     color: var(--offwhite) !important;
 }
 
-
 /* Styles for tablets in landscape mode */
 @media only screen and (max-width: 1000px)  {
     header .round-header-button img {
@@ -458,10 +461,6 @@ header nav a#about-us:hover iconify-icon {
 
     header .dynamic-product-list .wrapper {
         width: 80vw;
-    }
-
-    section.testimonials .testimonial:last-of-type {
-        margin-right: 310px;
     }
     
     header > h1 {
@@ -483,6 +482,7 @@ header nav a#about-us:hover iconify-icon {
         left: -18vw;
         font-size: 3vw;
         line-height: 3.8vw;
+        display: none;
     }
 
     header nav {
@@ -517,7 +517,7 @@ header nav a#about-us:hover iconify-icon {
 
     section.testimonials .testimonials-scroll {
         padding: 96px 0;
-        padding-right: 0;
+        margin-right: -24px;
     }
 
     section.testimonials .testimonial .page1 {
