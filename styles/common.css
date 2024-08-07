@@ -1,36 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@font-face {
+    font-family: Helvetica;
+    src: url("./HelveticaNeueLight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: HelveticaBold;
+    src: url("./HelveticaNeueMedium.otf") format("opentype");
+}
+ 
+:root {
+    --dark-gray: rgb(50, 50, 50);
+    --selected-gray: rgb(87, 87, 87);
+    --transparent-gray: rgba(255, 255, 255, 0.389);
+    --transparent-selected: rgba(255, 255, 255, 0.662);
+    --accent:   rgb(176, 215, 187);
+
+    --white: white;
+}
 
 :root {
-    --gray: rgb(219, 219, 219);
-    --dark-gray: rgb(42, 42, 42);
-    --light-green: #9AABA2;
-    --orange: #D09E34;
+    --font-size-small: 20px; 
+    --font-size-medium: 28px; 
 }
+
+article, .testimonial, .dynamic-product-list, footer, aside, nav span, .new-product {
+    font-size: var(--font-size-small);
+}
+
+.testimonial h1, nav, .close, #close, .dynamic-product-list .title, .testimonials h1, .left-arrow, .right-arrow, aside h1, .buy-button, .other-furniture h1 {
+    font-size: var(--font-size-medium);
+}
+
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: Helvetica !important;
+}
+
+/* this is fine for both pages.*/
+b, .bold, h1, strong, .buy-button { 
+    font-family: HelveticaBold !important;
+    font-weight: normal !important;
 }
 
 body {
     overflow-x: hidden;
+    line-height: 1.5;
 }
 
 footer {
-    background-color: var(--dark-gray);
-    color: var(--gray);
+    background-color: var(--white);
+    color: var(--dark-gray);
     display: flex;
     text-align: center;
     justify-content: center;
-    font-family: 'Montserrat', sans-serif;
     padding: 8px 0;
 }
 
 footer a {
     position: absolute;
     left: 24px;
-    color: var(--gray);
+    color: var(--dark-gray);
     text-decoration: none;
 }
 
@@ -40,13 +72,40 @@ footer a > iconify-icon {
 }
 
 @media only screen and (max-width: 600px) {
-    footer {
-        font-size: 12px;
+    :root {
+        --font-size-small: 16px;
+        --font-size-medium: 20px; 
     }
 }
 
-@media (hover: hover) {
-    footer a:hover {
-        color: var(--light-green);
+@media(hover: hover) {
+    header .dynamic-product-list .wrapper:hover,  
+    header nav:hover,
+    section.testimonials .testimonial:hover .page1 ,
+    section.testimonials .testimonial:hover .page2-content,
+    section.testimonials .testimonial:hover .page2-content-back,
+    .popup:hover,
+    section.other-furniture .new-product:hover {
+        background-color: var(--transparent-selected);
+        transition: 0.4s;
+    }
+
+    nav a:hover, .left-arrow:hover, .right-arrow:hover, nav h1:hover, footer a:hover, .close:hover, #close:hover {
+        color: var(--selected-gray);
+        
+    }
+
+    .colors > *:hover {
+        filter: brightness(1.2);
+    }
+
+    .buy-button:hover {
+        filter: brightness(1.2);
+    }
+
+    .dyn-list-product:hover {
+        color: var(--selected-gray);
+        filter: brightness(1.2);
+
     }
 }

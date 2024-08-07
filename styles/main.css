@@ -59,15 +59,13 @@ header .dynamic-product-list {
     height: fit-content;
     display: none;
     transform: translateY(-90%);
-    font-family: 'Montserrat', sans-serif;
     z-index: 1;
 }
 
 header .dynamic-product-list .wrapper {
     width: 100%;
-    background-color: var(--light-green);
+    background-color: var(--transparent-gray);
     color: var(--dark-gray);
-    opacity: 0.8;
     border-radius: 8px;
     transition: all 0.5s;
     overflow-y: scroll;
@@ -75,23 +73,26 @@ header .dynamic-product-list .wrapper {
     padding-bottom: 0;
 }
 
-header .dynamic-product-list .wrapper.selected {
-    opacity: 1;
-}
-
 header .dynamic-product-list .wrapper section {
     width: 100%;
 }
 
 header .dynamic-product-list .wrapper .title {
-    height: 48px;
-    text-align: center;
+    margin: auto;
+    padding-bottom: 8px;
 }
 
+.dynamic-product-list .head {
+    display: flex;
+    border-bottom: 1px solid var(--dark-gray);
+    margin-bottom: 8px;
+}
+
+
 header .dynamic-product-list .close {
+    z-index: 2;
     position: absolute;
     cursor: pointer;
-    z-index: 2;
 }   
 
 header .dyn-list-product {
@@ -102,7 +103,6 @@ header .dyn-list-product {
 }
 
 header .dyn-list-product a {
-    background-color: red;
     display: block;
     position: absolute;
     top: 0;
@@ -123,7 +123,6 @@ header .dyn-list-product .info {
 
 header .dyn-list-product span.price {
     align-self: flex-end;
-    margin-top: 24px;
 }
 
 header .dyn-list-product img {
@@ -134,25 +133,22 @@ header .dyn-list-product img {
 header nav {
     position: absolute;
     right: 0;
-    top: 16px;
+    top: 0;
     display: flex;
     align-items: center;
-    background-color: rgba(64, 64, 64, 0.3);
+    background-color: var(--transparent-gray);
     padding-left: 24px;
     padding-top: 8px;
-    border-radius: 8px 0 0 8px;
+    border-radius: 0px 0 0 16px;
 }
 
 header nav a {
-    font-size: 32px;
     margin-right: 16px;
-    color: white;
+    color: var(--dark-gray);
 }
 
 header nav a#about-us {
-    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
-    font-size: 16px;
     margin-right: 32px;
     border-radius: 8px;
     display: block;
@@ -165,55 +161,53 @@ header nav a#about-us iconify-icon {
 }
 
 header .header-title {
-    position: absolute;
-    top: 5vw;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    left: 25vw;
+    color: var(--dark-gray);
     pointer-events: none;
+    position: absolute;
+    left: 30vw;
+    top: 9vw;
+    opacity: 0.9;
 }
 
 header h1 {
     font-weight: bold;
     text-shadow: 5px 5px 5px var(--gray);
+    font-size: 5vw;
+    line-height: 0.7;
 }
 
 header h2 {
+    line-height: 2;
+    font-size: 2vw;
     text-shadow: 5px 5px 5px var(--gray);
 }
 
-header h1 {
-    font-size: 96px;
-}
-header h2 {
-    font-size: 32px;
+header h2 span {
+    color: rgb(162, 221, 162);
 }
 
 article {
-    background-color: var(--gray);
+    text-align: justify;
+    text-justify: inter-word;
     padding: 96px 24px;
+    padding-top: 128px;
     color: var(--dark-gray);
     min-height: 480px;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, var(--accent) 100%); 
 }
 
 article div {
     max-width: 1200px;
     margin: auto;
-    padding: 24px;
-}
-
-article div:first-of-type {
-    margin-bottom: 48px;
-}
-
-article p {
-    font-family: 'Montserrat', sans-serif;
 }
 
 section.testimonials {
-    background-color: var(--light-green);
+    color: var(--dark-gray);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, var(--accent) 60%);    
     position: relative;
     margin: auto;
+    padding-top: 24px;
+    padding-bottom: 16px;
 }
 
 section.testimonials > h1 {
@@ -221,8 +215,6 @@ section.testimonials > h1 {
     top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
 }
 
 section.testimonials .left-arrow, 
@@ -230,7 +222,6 @@ section.testimonials .right-arrow {
     position: absolute;
     top: 24px;
     cursor: pointer;
-    font-size: 24px;
 }
 
 section.testimonials .left-arrow {
@@ -259,30 +250,36 @@ section.testimonials .testimonial {
     width: fit-content;
     position: relative;
     perspective: 1500px;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--gray);
+    color: var(--dark-gray);
     margin-right: 344px;
     user-select: none;
 }
 
 section.testimonials .testimonial .page1 {
-    background-color: var(--dark-gray);
+    background-color: var(--transparent-gray);
     width: 320px;
     height: 320px;
     text-align: center;
     padding: 24px;
     border-radius: 16px 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 section.testimonials .testimonial .page1 img:first-of-type {
     width: 96px;
     height: 96px;
     border-radius: 1000px;
-    background-color: white;
+    filter: grayscale(100%);
+    margin: auto;
 }
 
 section.testimonials .testimonial .page1 img:last-of-type {
-    height: 96px;
+    height: 48px;
+    filter: brightness(80%);
+    margin: auto;
 }
 
 section.testimonials .testimonial .page1 > * {
@@ -298,21 +295,25 @@ section.testimonials .testimonial .page2 {
 }
 
 section.testimonials .testimonial .page2-content {
-    backface-visibility: hidden;
-    width: 320px;
+     width: 320px;
     transform: rotateY(180deg);
     padding: 24px;
     height: 320px;
     position: absolute;
     top: 0;
-    background-color: var(--dark-gray);
+    background-color: var(--transparent-gray);
     border-left: 1px solid rgba(219, 219, 219, 0.3);
     border-radius: 0 16px 16px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
 section.testimonials .testimonial .page2-content-back {
-    backface-visibility: hidden;
-    background-color: var(--gray);
+    backface-visibility: hidden !important;
+    background-color: var(--transparent-gray);
     width: 320px;
     padding: 24px;
     height: 320px;
@@ -323,26 +324,24 @@ section.testimonials .testimonial .page2-content-back {
 } 
 
 section.testimonials .testimonial .page2-content span {
-    margin-top: 64px;
     display: block;
 }
 
 section.testimonials .testimonial .page2-content-back span {
-    margin-top: 64px;
+    /* margin-top: 64px; */
     display: block;
-    font-size: larger;
-    color: var(--dark-gray)
+    color: var(--accent);
+    display: none;
 }
 
 .popup {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background-color: var(--light-green);
-    color: white;
+    background-color: var(--transparent-gray);
+    color: var(--dark-gray);
     padding: 24px;
     width: 320px;
-    font-family: 'Montserrat', sans-serif;
     text-align: center;
     border-radius: 8px;
     box-shadow: 5px 5px 10px rgba(28, 28, 28, 0.3);
@@ -360,183 +359,25 @@ section.testimonials .testimonial .page2-content-back span {
 }
 
 .popup h1 {
-    font-size: 24px;
     margin-bottom: 8px;
-}
-
-.popup span {
-    font-size: 12px;
 }
 
 .popup span#close {
     position: absolute; 
     top: 2px;
     right: 8px;
-    font-size: 20px;
     cursor: pointer;
 }
 
-
-@media only screen and (min-width: 601px) and (max-width: 992px) {
-    header #butterfly img {
-        height: 4vw;
-    }
-
-    .dynamic-product-list {
-        min-width: 320px !important;
-    }
-
-    .dyn-list-product .info {
-        font-size: 80% !important;
-    }
-
-    header .round-header-button img {
-        width: 7vw;
-    }
-
-    header h1 {
-        font-size: 64px;
-    }
-
-    header h2 {
-        font-size: 16px;
-    }
-
-    header .header-title {
-        top: 96px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    header #butterfly img {
-        height: 6vw;
-    }
-
-    header .dynamic-product-list {
-        width: calc(100% - 48px);
-        min-width: unset;
-        max-height: unset; 
-        height: 240px;
-        transform: translateY(30vw);
-        bottom: 0;
-        left: 24px;
-    }
-
-    header nav a {
-        font-size: 24px;
-        margin-right: 8px;
-    }
-
-    header .round-header-button img {
-        width: 13vw;
-    }
-
-    header .dynamic-product-list .wrapper {
-        opacity: 1;
-    }
-
-    header .header-title {
-        left: 32px;
-        top: 32px;
-    }
-    
-    header h1 {
-        font-size: 32px;
-    }
-    
-    header h2 {
-        display: none;
-    }
-
-    header nav a#about-us {
-        margin-left: -16px;
-        margin-right: 16px;
-    }
-
-    header nav a#about-us > span {
-        display: none;
-    }
-
-    article div {
-        margin: auto;
-        max-width: 100%;
-        padding: 8px;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    section.testimonials .testimonials-scroll {
-        padding-right: 0;
-    }
-
-    section.testimonials .testimonial {
-        margin-right: 300px;
-    }
-
-    section.testimonials .testimonial .page1 {
-        width: 240px;
-        height: 240px;
-        font-size: 70%;
-    }
-
-    section.testimonials .testimonial .page1 img:first-of-type {
-        width: 64px;
-        height: 64px;
-    }
-
-    section.testimonials .testimonial .page1 img:last-of-type {
-        height: 64px;
-    }
-
-    section.testimonials .testimonial .page2 {
-        width: 480px;
-    }
-
-    section.testimonials .testimonial .page2-content {
-        width: 240px;
-        height: 240px;
-    }
-
-    section.testimonials .testimonial .page2-content-back {
-        width: 240px;
-        height: 240px;
-    }
-}
 
 @media(hover: hover) {
     header .round-header-button img:hover {
         transform: rotate(360deg);
         transition: ease-in 0.5s;
     }
-    
-    .popup span#close:hover
-    {
-        color: rgb(193, 227, 249)
-    }
-    
-    .popup:hover {
-        background-color: rgb(225, 200, 204);
-        color: var(--dark-gray);
-    }
-    
-    section.testimonials .left-arrow:hover,
-    section.testimonials .right-arrow:hover {
-        color: var(--gray);
-    }
-    
-    header nav a#about-us:hover {
-        color: white;
-    }
-    
+
     header nav a#about-us:hover iconify-icon {
         margin-bottom: -8px;
-    }
-    
-    header nav a:hover {
-        color: var(--light-green);
-    }
-    
-    header .dyn-list-product:hover {
-        color: var(--gray);
+        transition: 0.2s;
     }
 }

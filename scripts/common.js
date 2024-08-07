@@ -71,7 +71,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
             bigImageResize()
         }
 
-        if(tracker) tracker.children[0].style.backgroundColor = "black"
+        if(tracker) tracker.children[0].style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--dark-gray');
     }
 
     rightArrow.addEventListener("click", e => {
@@ -96,7 +96,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         if(snap && tracker) {
             index = Math.round(slider.scrollLeft/e.currentTarget.clientWidth)
             for(const child of tracker.children) { child.style.backgroundColor = "unset" }
-            tracker.children[index].style.backgroundColor = "black"
+            tracker.children[index].style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--dark-gray');
         }
     });
 

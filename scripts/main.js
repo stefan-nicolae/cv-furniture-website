@@ -51,7 +51,7 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
                     `<div class="dyn-list-product" data-name=${product.name.replaceAll(" ", "_")} data-category=${dynamicProductList.classList[1]}>
                         <img src="${product.images[0].src}" alt="Thumbnail of ${product.name}">
                         <div class="info">
-                            <h4>${product.name}</h4>
+                            <h4 class="bold">${product.name}</h4>
                             <span>${product.materials}</span>
                             <span class="price">${product.price}</span>
                         </div>

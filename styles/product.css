@@ -1,5 +1,6 @@
+
+
 body {
-    background-color: rgb(238, 238, 238);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -7,14 +8,12 @@ body {
 
 header {
     width: 100%;
-    background-color: var(--gray);
     display: flex;
     justify-content: flex-end;
 }
 
 header nav h1 {
     color: var(--dark-gray);
-    font-family: 'Montserrat', sans-serif;
     position: absolute;
     left: 8px;
     display: block;
@@ -28,7 +27,6 @@ header nav {
 
 header nav > a {
     color: var(--dark-gray);
-    font-size: 24px;
     display: block;
     margin-right: 8px;
     margin-top: 8px;
@@ -46,9 +44,9 @@ main {
     width: fit-content;
     display: flex;
     margin: auto;
-    margin-top: 48px;
+    margin-top: 128px;
     position: relative;
-    padding-bottom: 48px;
+    margin-bottom: 128px;
 }
 
 main section {
@@ -93,10 +91,12 @@ aside {
     display: flex;
     flex-direction: column;
     padding-left: 48px;
-    font-family: 'Montserrat', sans-serif;
-    width: 320px;
+    width: 480px;
     justify-content: space-between;
+    color: var(--dark-gray);
+    position: relative;
 }
+
 
 aside .colors .color {
     display: block;
@@ -109,24 +109,28 @@ aside .colors .color.selected {
     border: 1px solid var(--dark-gray);
 }
 
-main .buy-button {
+aside .colors {
     position: absolute;
-    bottom: 145px;
     right: 0;
-    background-color: goldenrod;
+    top: 0;
+}
+
+main .buy-button {
     padding: 8px 24px;
     border-radius: 8px;
     border: none;
-    color: white;
-    font-size: 16px;
+    color: var(--white);
     cursor: pointer;
+    background-color: var(--accent);
+    position: absolute;
+    bottom: 0px;
+    right: 0;
 }
 
 main section .right-arrow,
 main section .left-arrow {
     position: absolute;
     bottom: 50%;
-    font-size: 24px;
     cursor: pointer;
     color: var(--dark-gray);
 }
@@ -152,49 +156,53 @@ main section .tracker .tracker-circle {
     height: 16px;
     width: 16px;
     border: 1px solid var(--dark-gray);
-    opacity: 0.5;
     border-radius: 1000px;
     margin: 0 2px;
 }
 
 
 section.other-furniture {
-    background-color: white;
+    margin-top: 128px;
     padding: 24px;
     flex: 1;
     width: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, var(--accent) 100%); 
+    padding-bottom: 96px;
+}
+
+footer {
+    background-color: var(--accent);
 }
 
 section.other-furniture h1 {
-    font-family: 'Montserrat', sans-serif;
     color: var(--dark-gray);
     font-weight: 100;
     text-align: center;
     margin-top: 24px;
+    margin-bottom: 48px;
 }
 
 section.other-furniture hr {
     margin: 32px 0;
-    color: var(--gray);
-    opacity: 0.1;
+    border-color: var(--transparent-gray);
+    display: none;
 }
 
 section.other-furniture .list {
     display: flex;
-    font-family: 'Montserrat', sans-serif;
     justify-content: center;
 }
 
 section.other-furniture .new-product {
-    background-color: rgb(171, 171, 171);
     width: 240px;
     height: fit-content;
     margin-right: 24px;
-    color: white;
-    padding: 8px;
+    color: var(--dark-gray);
+    padding: 16px 24px;
     border-radius: 8px;
     cursor: pointer;
     position: relative;
+    background-color: var(--transparent-gray);
 }
 
 section.other-furniture .new-product img {
@@ -206,7 +214,6 @@ section.other-furniture .new-product > * {
 }
 
 section.other-furniture .new-product a {
-    background-color: red;
     display: block;
     position: absolute;
     top: 0;
@@ -215,74 +222,4 @@ section.other-furniture .new-product a {
     right: 0;
     opacity: 0;
     z-index: 1;
-}
-
-@media only screen and (min-width: 601px) and (max-width: 992px) {
-
-}
-
-@media only screen and (max-width: 600px) {
-    header nav h1 {
-        font-size: 12px;
-        width: 100px;
-    }
-
-    section.other-furniture .new-product {
-        font-size: 13px;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    main {
-        flex-direction: column;
-        width: 100%;
-        margin-top: unset;
-        padding-bottom: 16px;
-    }
-
-    main section {
-        height: unset;
-    }
-    
-    main section .slideshow {
-        margin-bottom: -8px;
-        width: 100%;
-    }
-
-    main aside {
-        width: 100%;
-        text-align: center;
-        height: 320px;
-        padding-left: 0;
-        padding: 24px;
-    }
-
-    main .buy-button {
-        bottom: 16px;
-        left: 50%;
-        transform: translateX(-45%);
-    }
-}
-
-@media (hover: hover) {
-    aside .colors .color:hover {
-        opacity: 0.5;
-    }
-    
-    section.other-furniture .new-product:hover {
-        background-color: var(--light-green);
-    }
-
-    main section .right-arrow:hover,
-    main section .left-arrow:hover {
-        color: var(--gray);
-    }
-
-    main .buy-button:hover {
-        background-color: gold;
-    }
-    
-    header nav > a:hover {
-        color: var(--light-green);
-    }
 }
