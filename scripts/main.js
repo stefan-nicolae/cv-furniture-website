@@ -5,24 +5,29 @@ const dynamicProductListWrapper = document.querySelector("div.dynamic-product-li
 const dynListSection = document.querySelector("div.dynamic-product-list .wrapper section")
 const dynListHeader = document.querySelector("div.dynamic-product-list .wrapper .title")
 const testimonials = document.querySelector(".testimonials")
-const butterfly = document.querySelector("#butterfly")
 let cursorOutsideProductList = true
 let dynSelectedClass = ""
 let PRODUCTS = []
 
+function isMobileWindowWidth() {
+    const mediaQuery = window.matchMedia('(max-width: 1000px)');
+    return mediaQuery.matches
+}
+
 loadProducts().then(res => {
     PRODUCTS = res
 })
+
 document.onmousemove = e => {
     const rect = dynamicProductList.getBoundingClientRect()
     if(e.clientX >= rect.x && e.clientX <= rect.x + rect.width &&
        e.clientY >= rect.y && e.clientY <= rect.y + rect.height
         ) 
     {
-        dynamicProductListWrapper.classList.add("selected")
+        // dynamicProductListWrapper.classList.add("selected")
         cursorOutsideProductList = false
     } else {
-        dynamicProductListWrapper.classList.remove("selected")
+        // dynamicProductListWrapper.classList.remove("selected")
         cursorOutsideProductList = true
     }
 }
@@ -42,21 +47,22 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
         e.stopPropagation()
 
         dynamicProductList.classList.remove(dynamicProductList.classList[1])
-        dynamicProductList.classList.add(headerButton.classList[0])
+        dynamicProductList.classList.add(headerButton.classList[0]) 
+        
         if(dynamicProductList.classList[1] !== dynSelectedClass) {
             dynamicProductList.style.display = "flex"
             dynListSection.innerHTML = ""
             PRODUCTS[dynamicProductList.classList[1]].forEach(product => {
                 const productElement = 
-                    `<div class="dyn-list-product" data-name=${product.name.replaceAll(" ", "_")} data-category=${dynamicProductList.classList[1]}>
-                        <img src="${product.images[0].src}" alt="Thumbnail of ${product.name}">
-                        <div class="info">
-                            <h4 class="bold">${product.name}</h4>
-                            <span>${product.materials}</span>
-                            <span class="price">${product.price}</span>
-                        </div>
-                        <a></a>
-                    </div>`
+                `<div class="dyn-list-product" data-name=${product.name.replaceAll(" ", "_")} data-category=${dynamicProductList.classList[1]}>
+                <img src="${product.images[0].src}" alt="Thumbnail of ${product.name}">
+                <div class="info">
+                <h4 class="bold">${product.name}</h4>
+                <span>${product.materials}</span>
+                <span class="price">${product.price}</span>
+                </div>
+                <a></a>
+                </div>`
                 dynListSection.innerHTML += productElement
             })
             dynamicProductListWrapper.append()
@@ -65,36 +71,37 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
             if(dynamicProductList.style.display !== "flex") 
                 dynamicProductList.style.display = "flex"
             else
-                dynamicProductList.style.display = "none"
-        }
-        dynSelectedClass = dynamicProductList.classList[1]
+            dynamicProductList.style.display = "none"
+    }
+    dynSelectedClass = dynamicProductList.classList[1]
+    
+    dynListHeader.textContent = dynSelectedClass[0].toUpperCase() + dynSelectedClass.slice(1) + "s"
+    if(isMobileWindowWidth()) {
+        dynamicProductList.id = 'mobile-dyn-list'
+        document.querySelector("article").style.paddingTop = dynamicProductList.clientHeight + 128 + "px";
+    } 
+        // if(dynamicProductList.style.display === "flex") {
 
-        if(dynamicProductList.style.display === "flex") {
-            dynListHeader.textContent = dynSelectedClass[0].toUpperCase() + dynSelectedClass.slice(1) + "s"
+        //     dynamicProductList.style.marginLeft = 0
+      
+        //     const rect = dynamicProductList.getBoundingClientRect()
+        //     const rightOverflow = rect.right - window.innerWidth + 48
+        //     if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
 
-            dynamicProductList.style.marginLeft = 0
-            if(window.innerWidth > 600) 
-            {
-                const rect = dynamicProductList.getBoundingClientRect()
-                const rightOverflow = rect.right - window.innerWidth + 48
-                if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
-            }
-
-            document.querySelectorAll(".dyn-list-product a").forEach((link) => {
-                link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
-            })
-        }
+        //     document.querySelectorAll(".dyn-list-product a").forEach((link) => {
+        //         link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
+        //     })
+        // }
     })
 })
 
 window.onresize = () => {
-    dynamicProductList.style.marginLeft = 0
-    if(window.innerWidth > 600) 
-    {
-        const rect = dynamicProductList.getBoundingClientRect()
-        const rightOverflow = rect.right - window.innerWidth + 48
-        if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
-    }
+    // dynamicProductList.style.marginLeft = 0
+    
+    // const rect = dynamicProductList.getBoundingClientRect()
+    // const rightOverflow = rect.right - window.innerWidth + 48
+    // if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
+    
 }
 
 window.onscroll = () => {
@@ -112,42 +119,8 @@ window.onscroll = () => {
     }
 }
 
-const getButterflyDelta = (range, bias) => {
-    const movement = Math.floor(Math.random() * (range+1))
-    const biasResult = Math.floor(Math.random() * (bias+1)) <= 0 ? -0.5 : 0.5
-    return movement * biasResult
-}
-
-const getButterflyProperty = (name) => {
-    return window.getComputedStyle(butterfly)[name].slice(0, -2)
-}
-
-butterfly.style.top = "200px"
-
-setInterval(() => {
-    if(getButterflyProperty("left") > window.innerWidth) butterfly.style.left = "0px"
-    if(getButterflyProperty("top") > window.innerHeight) butterfly.style.top = "0px"
-    if(getButterflyProperty("top") < 0) butterfly.style.top = window.innerHeight + "px"
-
-    butterfly.style.left = parseFloat(getButterflyProperty("left")) + getButterflyDelta(10, 10) + "px"
-    butterfly.style.top = parseFloat(getButterflyProperty("top")) + getButterflyDelta(5, 1) + "px"
-}, 70)
-
-butterfly.addEventListener("mouseenter", e => {
-    butterfly.animate([
-        {transform: `translateY(${parseFloat(getButterflyProperty("top")) + getButterflyDelta(50, 1) - 200 + "px"})`}
-    ], {
-        duration: 500,
-        easing: "ease-in",
-        fill: "forwards"
-    })
-})
 
 
-function isMobileWindowWidth() {
-    const mediaQuery = window.matchMedia('(max-width: 1000px)');
-    return mediaQuery.matches
-}
 
 function getScrollWidth () {
     if(isMobileWindowWidth()) {

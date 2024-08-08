@@ -12,10 +12,11 @@ header img {
 header #butterfly {
     position: absolute;
     display: block;
+    user-select: none;
 }
 
 header #butterfly img {
-    height: 2vw;
+    height: 1vw;
 }
 
 header .round-header-button {
@@ -55,10 +56,10 @@ header .dynamic-product-list {
     position: absolute;
     width: 30vw;
     min-width: 480px;
-    max-height: 20vw;
+    max-height: 320px;
     height: fit-content;
     display: none;
-    transform: translateY(-90%);
+    transform: translateY(-100%);
     z-index: 1;
 }
 
@@ -264,25 +265,25 @@ section.testimonials .testimonial .page1 > * {
     margin-bottom: 8px;
 }
 
-                                            section.testimonials .testimonial .page1,
-                                            section.testimonials .testimonial .page2-content,
-                                            section.testimonials .testimonial .page2-content-back {
-                                                width: var(--t-width);
-                                                height: var(--t-height);
-                                            }
+section.testimonials .testimonial .page1,
+section.testimonials .testimonial .page2-content,
+section.testimonials .testimonial .page2-content-back {
+    width: var(--t-width);
+    height: var(--t-height);
+}
 
-                                            section.testimonials .testimonial .page2 {
-                                                width: calc(var(--t-width) * 2);
-                                                height: var(--t-height);
-                                            }
+section.testimonials .testimonial .page2 {
+    width: calc(var(--t-width) * 2);
+    height: var(--t-height);
+}
 
-                                            section.testimonials .testimonial {
-                                                margin-right: calc(var(--t-width) + var(--t-padding));
-                                            }
+section.testimonials .testimonial {
+    margin-right: calc(var(--t-width) + var(--t-padding));
+}
 
-                                            section.testimonials .testimonial:last-of-type {
-                                                margin-right: var(--t-width);
-                                            }
+section.testimonials .testimonial:last-of-type {
+    margin-right: var(--t-width);
+}
 
 section.testimonials .testimonial {
     height: fit-content;
@@ -402,6 +403,18 @@ section.testimonials .testimonial .page2-content-back span {
 
     section.testimonials .testimonial:last-of-type {
         margin-right: calc(var(--t-width) +  var(--t-padding));
+    }
+
+    #mobile-dyn-list {
+        left: 24px;
+        top: unset;
+        bottom: 0;
+    }
+
+    header .dynamic-product-list {
+        transform: translateY(100%);
+        width: calc(var(--window-width) - 48px);
+        max-width: calc(var(--window-width) - 48px);
     }
 }
 
