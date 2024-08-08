@@ -143,10 +143,26 @@ butterfly.addEventListener("mouseenter", e => {
     })
 })
 
+
+function isMobileWindowWidth() {
+    const mediaQuery = window.matchMedia('(max-width: 1000px)');
+    return mediaQuery.matches
+}
+
+function getScrollWidth () {
+    if(isMobileWindowWidth()) {
+        const padding = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--t-padding'))
+        return document.documentElement.clientWidth +padding
+    }   else return 400
+} 
+
+
 activateSlider(
     document.querySelector(".testimonials .testimonials-scroll"), 
     document.querySelector(".testimonials .left-arrow"), 
-    document.querySelector(".testimonials .right-arrow")
+    document.querySelector(".testimonials .right-arrow"),
+    () => getScrollWidth(), 
+    isMobileWindowWidth
 )
           
 if(sessionStorage.getItem("popup-closed") === "true") {
@@ -157,3 +173,11 @@ document.querySelector(".popup #close").addEventListener("click", e => {
     sessionStorage.setItem("popup-closed", "true")
     e.currentTarget.parentElement.style.display = "none"
 })
+
+function setVw() {
+    let vw = document.documentElement.clientWidth / 100;
+    document.documentElement.style.setProperty('--vw', `${vw}px`);
+  }
+  
+  setVw();
+  window.addEventListener('resize', setVw);

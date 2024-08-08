@@ -54,8 +54,8 @@ loadProducts().then(res => {
                 document.querySelector(".slideshow"),
                 document.querySelector("section .left-arrow"),
                 document.querySelector("section .right-arrow"),
-                document.querySelector("section").clientWidth,
-                true,
+                 () =>document.querySelector("section").clientWidth,
+                () => true,
                 tracker,
                 document.querySelectorAll(".scroll-div img"),
                 document.querySelector("#big-image")

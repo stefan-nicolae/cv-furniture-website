@@ -245,28 +245,6 @@ section.testimonials .testimonials-scroll.active{
     cursor: grabbing;
 }
 
-section.testimonials .testimonial {
-    height: fit-content;
-    width: fit-content;
-    position: relative;
-    perspective: 1500px;
-    color: var(--dark-gray);
-    margin-right: 344px;
-    user-select: none;
-}
-
-section.testimonials .testimonial .page1 {
-    background-color: var(--transparent-gray);
-    width: 320px;
-    height: 320px;
-    text-align: center;
-    padding: 24px;
-    border-radius: 16px 0 0 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
 
 section.testimonials .testimonial .page1 img:first-of-type {
     width: 96px;
@@ -286,19 +264,55 @@ section.testimonials .testimonial .page1 > * {
     margin-bottom: 8px;
 }
 
+                                            section.testimonials .testimonial .page1,
+                                            section.testimonials .testimonial .page2-content,
+                                            section.testimonials .testimonial .page2-content-back {
+                                                width: var(--t-width);
+                                                height: var(--t-height);
+                                            }
+
+                                            section.testimonials .testimonial .page2 {
+                                                width: calc(var(--t-width) * 2);
+                                                height: var(--t-height);
+                                            }
+
+                                            section.testimonials .testimonial {
+                                                margin-right: calc(var(--t-width) + var(--t-padding));
+                                            }
+
+                                            section.testimonials .testimonial:last-of-type {
+                                                margin-right: var(--t-width);
+                                            }
+
+section.testimonials .testimonial {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    perspective: 1500px;
+    color: var(--dark-gray);
+    user-select: none;
+}
+
+section.testimonials .testimonial .page1 {
+    background-color: var(--transparent-gray);
+
+    text-align: center;
+    padding: 24px;
+    border-radius: 16px 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 section.testimonials .testimonial .page2 {
-    width: 640px;
-    height: 320px;
     position: absolute;
     top: 0;
     transform-style: preserve-3d;
 }
 
 section.testimonials .testimonial .page2-content {
-     width: 320px;
     transform: rotateY(180deg);
     padding: 24px;
-    height: 320px;
     position: absolute;
     top: 0;
     background-color: var(--transparent-gray);
@@ -308,15 +322,12 @@ section.testimonials .testimonial .page2-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 section.testimonials .testimonial .page2-content-back {
     backface-visibility: hidden !important;
     background-color: var(--transparent-gray);
-    width: 320px;
     padding: 24px;
-    height: 320px;
     position: absolute;
     top: 0;
     text-align: center;
@@ -328,7 +339,6 @@ section.testimonials .testimonial .page2-content span {
 }
 
 section.testimonials .testimonial .page2-content-back span {
-    /* margin-top: 64px; */
     display: block;
     color: var(--accent);
     display: none;
@@ -369,6 +379,31 @@ section.testimonials .testimonial .page2-content-back span {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 1000px) {
+    :root {
+        --font-size-small: 16px;
+        --font-size-medium: 20px; 
+        --t-width: calc(var(--window-width)/2 -  var(--t-padding)) !important;
+    }
+
+    section.testimonials .testimonials-scroll {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    section.testimonials .testimonial {
+        margin-left:  var(--t-padding);
+        margin-right: var(--t-padding);
+    }
+
+    section.testimonials .testimonial {
+        margin-right: calc(var(--t-width) + calc( var(--t-padding) * 2));
+    }
+
+    section.testimonials .testimonial:last-of-type {
+        margin-right: calc(var(--t-width) +  var(--t-padding));
+    }
+}
 
 @media(hover: hover) {
     header .round-header-button img:hover {

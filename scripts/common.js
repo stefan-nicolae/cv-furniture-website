@@ -6,8 +6,13 @@ export async function loadProducts() {
     .then(data => data.products)
 }
 
-export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400, 
-        snap=false, tracker=undefined, IMAGES=undefined, BIG_IMAGE=undefined) {
+export function activateSlider(slider, leftArrow, rightArrow, getScrollWidth=()=>400, isSnap=() => false, tracker=undefined, IMAGES=undefined, BIG_IMAGE=undefined) {
+
+    let snap = isSnap(), scrollWidth = getScrollWidth()
+    window.onresize = () => {
+        snap = isSnap()
+        scrollWidth = getScrollWidth()
+    }
 
     let isDown = false, startX, scrollLeft, startTime, index=0
 
@@ -26,7 +31,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     const getBigImageXY = e => {
         const X = e.layerX !== undefined ? e.layerX : e.changedTouches[0].clientX
         const Y = e.layerY !== undefined ? e.layerY : e.changedTouches[0].clientY
-        let cursorX = X - index*e.currentTarget.clientWidth 
+        let cursorX = X - index*scrollWidth
         if(cursorX < 0) cursorX += slider.clientWidth * index
         const cursorY = e.currentTarget.clientHeight - Y
         return [cursorX, cursorY]
@@ -47,7 +52,7 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
         }
     }
 
-    if(snap) {
+    if(snap && IMAGES) {
         const imageResize = () => {
             IMAGES.forEach(img => {
                 img.style.width = img.parentElement.parentElement.parentElement.clientWidth + "px"
@@ -75,7 +80,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     }
 
     rightArrow.addEventListener("click", e => {
-        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         if(BIG_IMAGE) BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: scrollWidth,
@@ -84,7 +88,6 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
     });
 
     leftArrow.addEventListener("click", e => {
-        if(snap) scrollWidth = e.currentTarget.parentElement.clientWidth
         if(BIG_IMAGE) BIG_IMAGE.style.display = "none"
         slider.scrollBy({
             left: -scrollWidth,
@@ -128,13 +131,13 @@ export function activateSlider(slider, leftArrow, rightArrow, scrollWidth=400,
                 })
             }
             else {
-                const delta = slider.scrollLeft%e.currentTarget.clientWidth
-                if(delta <= e.currentTarget.clientWidth/2) slider.scrollBy({
+                const delta = slider.scrollLeft%scrollWidth
+                if(delta <= scrollWidth/2) slider.scrollBy({
                     left: -delta,
                     behavior: "smooth"
                 }) 
                 else slider.scrollBy({
-                    left: -delta + e.currentTarget.clientWidth,
+                    left: -delta + scrollWidth,
                     behavior: "smooth"
                 }) 
             }
@@ -170,3 +173,4 @@ export function openProduct(category, name) {
         return `/product.html?category=${category}&name=${name}`
     return `/cv-furniture-website/product.html?category=${category}&name=${name}`
 }
+

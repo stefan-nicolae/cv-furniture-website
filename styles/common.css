@@ -14,8 +14,11 @@
     --transparent-gray: rgba(255, 255, 255, 0.389);
     --transparent-selected: rgba(255, 255, 255, 0.662);
     --accent:   rgb(176, 215, 187);
-
     --white: white;
+    --t-width: 320px;
+    --window-width: calc(var(--vw, 1vw) * 100);
+    --t-padding: 24px;
+    --t-height: 320px;
 }
 
 :root {
@@ -30,7 +33,6 @@ article, .testimonial, .dynamic-product-list, footer, aside, nav span, .new-prod
 .testimonial h1, nav, .close, #close, .dynamic-product-list .title, .testimonials h1, .left-arrow, .right-arrow, aside h1, .buy-button, .other-furniture h1 {
     font-size: var(--font-size-medium);
 }
-
 
 * {
     padding: 0;
@@ -71,7 +73,7 @@ footer a > iconify-icon {
     margin-left: 4px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
     :root {
         --font-size-small: 16px;
         --font-size-medium: 20px; 
