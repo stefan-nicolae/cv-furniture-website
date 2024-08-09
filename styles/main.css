@@ -54,8 +54,8 @@ header .chair {
 
 header .dynamic-product-list {
     position: absolute;
-    width: 30vw;
-    min-width: 480px;
+    width: 50vw;
+    max-width: 480px;
     max-height: 320px;
     height: fit-content;
     display: none;
@@ -68,7 +68,6 @@ header .dynamic-product-list .wrapper {
     background-color: var(--transparent-gray);
     color: var(--dark-gray);
     border-radius: 8px;
-    transition: all 0.5s;
     overflow-y: scroll;
     padding: 8px;
     padding-bottom: 0;
@@ -111,7 +110,7 @@ header .dyn-list-product a {
     left: 0;
     right: 0;
     opacity: 0;
-    z-index: 1;
+    z-index:3;
 }
 
 header .dyn-list-product .info {
@@ -141,6 +140,8 @@ header nav {
     padding-left: 24px;
     padding-top: 8px;
     border-radius: 0px 0 0 16px;
+    height: 48px;
+
 }
 
 header nav a {
@@ -150,7 +151,7 @@ header nav a {
 
 header nav a#about-us {
     text-decoration: none;
-    margin-right: 32px;
+    margin-right: 24px;
     border-radius: 8px;
     display: block;
     margin-bottom: 8px;
@@ -171,8 +172,6 @@ header .header-title {
 }
 
 header h1 {
-    font-weight: bold;
-    text-shadow: 5px 5px 5px var(--gray);
     font-size: 5vw;
     line-height: 0.7;
 }
@@ -180,11 +179,10 @@ header h1 {
 header h2 {
     line-height: 2;
     font-size: 2vw;
-    text-shadow: 5px 5px 5px var(--gray);
 }
 
 header h2 span {
-    color: rgb(162, 221, 162);
+    color: rgb(221, 202, 162);
 }
 
 article {
@@ -355,7 +353,6 @@ section.testimonials .testimonial .page2-content-back span {
     width: 320px;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 5px 5px 10px rgba(28, 28, 28, 0.3);
     animation: 5s ease-in slidein;
 }
 
@@ -381,12 +378,6 @@ section.testimonials .testimonial .page2-content-back span {
 }
 
 @media only screen and (max-width: 1000px) {
-    :root {
-        --font-size-small: 16px;
-        --font-size-medium: 20px; 
-        --t-width: calc(var(--window-width)/2 -  var(--t-padding)) !important;
-    }
-
     section.testimonials .testimonials-scroll {
         padding-left: 0;
         padding-right: 0;
@@ -408,13 +399,65 @@ section.testimonials .testimonial .page2-content-back span {
     #mobile-dyn-list {
         left: 24px;
         top: unset;
-        bottom: 0;
+        bottom: -48px;
     }
 
     header .dynamic-product-list {
         transform: translateY(100%);
         width: calc(var(--window-width) - 48px);
         max-width: calc(var(--window-width) - 48px);
+    }
+
+    header .header-title {
+        color: var(--dark-gray);
+        left: 30vw;
+        top: 11vw;
+        opacity: 0.9;
+    }
+    
+    header h1 {
+        font-size: 10vw;
+        line-height: 0.7;
+    }
+    
+    header h2 {
+        line-height: 0.8;
+        font-size: 4.5vw;
+        position: absolute;
+        bottom: -33vw;
+        left: -20vw;
+    }
+    
+    header h2 span {
+        color: var(--accent);
+        filter: brightness(0.8);
+        text-indent: 10vw;
+        display: block;
+    }
+
+    header .round-header-button img {
+        width: 8vw;
+    }
+
+    header #butterfly img {
+        height: 3vw;
+    }
+
+    header nav a#about-us {
+        display: none;
+    }
+
+    header nav {
+        /* padding-left: 8px;
+        padding-top: 4px;
+        height: 24px; */
+        padding-top: 2px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    header nav a {
+        /* margin-right: 8px; */
+        font-size: 32px;
     }
 }
 

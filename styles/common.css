@@ -19,11 +19,21 @@
     --window-width: calc(var(--vw, 1vw) * 100);
     --t-padding: 24px;
     --t-height: 320px;
-}
-
-:root {
+    --p-width: 480px;
     --font-size-small: 20px; 
     --font-size-medium: 28px; 
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Helvetica !important;
+}
+
+b, .bold, h1, strong, .buy-button { 
+    font-family: HelveticaBold !important;
+    font-weight: normal !important;
 }
 
 article, .testimonial, .dynamic-product-list, footer, aside, nav span, .new-product {
@@ -34,17 +44,8 @@ article, .testimonial, .dynamic-product-list, footer, aside, nav span, .new-prod
     font-size: var(--font-size-medium);
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Helvetica !important;
-}
-
-/* this is fine for both pages.*/
-b, .bold, h1, strong, .buy-button { 
-    font-family: HelveticaBold !important;
-    font-weight: normal !important;
+.dynamic-product-list, .testimonial, .popup, #product-slideshow, .new-product {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 body {
@@ -56,7 +57,6 @@ footer {
     background-color: var(--white);
     color: var(--dark-gray);
     display: flex;
-    text-align: center;
     justify-content: center;
     padding: 8px 0;
 }
@@ -77,6 +77,13 @@ footer a > iconify-icon {
     :root {
         --font-size-small: 16px;
         --font-size-medium: 20px; 
+        --t-width: calc(var(--window-width)/2 -  var(--t-padding)) !important;
+        --p-width: calc(var(--window-width) - 48px);
+    }
+
+    footer {
+        justify-content: right;
+        padding-right: 24px;
     }
 }
 

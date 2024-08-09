@@ -9,6 +9,9 @@ let cursorOutsideProductList = true
 let dynSelectedClass = ""
 let PRODUCTS = []
 
+const articleTopPadding = 128
+
+
 function isMobileWindowWidth() {
     const mediaQuery = window.matchMedia('(max-width: 1000px)');
     return mediaQuery.matches
@@ -35,6 +38,7 @@ document.onmousemove = e => {
 document.onclick = e => {
     if(cursorOutsideProductList) 
         dynamicProductList.style.display = "none"
+        document.querySelector("article").style.paddingTop = articleTopPadding + "px"
 }
 
 document.querySelector(".dynamic-product-list .close")
@@ -70,39 +74,53 @@ document.querySelectorAll(".round-header-button").forEach(headerButton => {
         else {
             if(dynamicProductList.style.display !== "flex") 
                 dynamicProductList.style.display = "flex"
-            else
+            else 
             dynamicProductList.style.display = "none"
-    }
-    dynSelectedClass = dynamicProductList.classList[1]
-    
-    dynListHeader.textContent = dynSelectedClass[0].toUpperCase() + dynSelectedClass.slice(1) + "s"
-    if(isMobileWindowWidth()) {
-        dynamicProductList.id = 'mobile-dyn-list'
-        document.querySelector("article").style.paddingTop = dynamicProductList.clientHeight + 128 + "px";
-    } 
-        // if(dynamicProductList.style.display === "flex") {
+        }
 
-        //     dynamicProductList.style.marginLeft = 0
-      
-        //     const rect = dynamicProductList.getBoundingClientRect()
-        //     const rightOverflow = rect.right - window.innerWidth + 48
-        //     if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
+        
+        dynSelectedClass = dynamicProductList.classList[1]
+        
+        dynListHeader.textContent = dynSelectedClass[0].toUpperCase() + dynSelectedClass.slice(1) + "s"
 
-        //     document.querySelectorAll(".dyn-list-product a").forEach((link) => {
-        //         link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
-        //     })
-        // }
+        document.querySelectorAll(".dyn-list-product a").forEach((link) => {
+            link.href = openProduct(link.parentElement.dataset.category, link.parentElement.dataset.name)
+        })
+
+        const adjustMobile = () => {
+            if(isMobileWindowWidth()) {
+                dynamicProductList.id = 'mobile-dyn-list'
+                document.querySelector("article").style.paddingTop = dynamicProductList.clientHeight + articleTopPadding + "px";
+            } 
+        }
+        
+        const adjustOverflow = () => {
+            dynamicProductList.style.marginLeft = 0
+            if(dynamicProductList.style.display === "flex" && !isMobileWindowWidth()) {
+                console.log("running")
+                const rect = dynamicProductList.getBoundingClientRect()
+                const rightOverflow = rect.right - document.documentElement.clientWidth + 48
+                if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
+            }
+        }
+        
+        adjustMobile()
+        adjustOverflow()
+
+        window.addEventListener('resize', () => {
+            adjustMobile()
+            adjustOverflow()
+        })
+
     })
+
+    // window.onresize = () => {
+    //     console.log("resizing")
+    //     adjustOverflow()
+    //     adjustMobile()
+    // }
 })
 
-window.onresize = () => {
-    // dynamicProductList.style.marginLeft = 0
-    
-    // const rect = dynamicProductList.getBoundingClientRect()
-    // const rightOverflow = rect.right - window.innerWidth + 48
-    // if(rightOverflow > 0) dynamicProductList.style.marginLeft = -rightOverflow + "px"
-    
-}
 
 window.onscroll = () => {
     let space = window.innerHeight - testimonials.offsetTop + window.scrollY

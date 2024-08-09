@@ -50,20 +50,19 @@ main {
 }
 
 main section {
-    height: 480px;
+    height: var(--p-width);
     position: relative;
-    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 0.1);
     cursor: grab;
     user-select: none;
 }
 
 main section .slideshow {
     overflow: hidden;
-    width: 480px;
+    width: var(--p-width);
 }
 
 main section .scroll-div img {
-    width: 480px;
+    width: var(--p-width);
 }
 
 main section .active {
@@ -91,7 +90,7 @@ aside {
     display: flex;
     flex-direction: column;
     padding-left: 48px;
-    width: 480px;
+    width: var(--p-width);
     justify-content: space-between;
     color: var(--dark-gray);
     position: relative;
@@ -222,4 +221,28 @@ section.other-furniture .new-product a {
     right: 0;
     opacity: 0;
     z-index: 1;
+}
+
+@media only screen and (max-width: 1000px) { 
+
+    main {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    aside {
+        margin-top: 48px;
+        padding-left: 0;
+        height: 320px;
+    }
+
+    section.other-furniture .list {
+        flex-direction: column;
+    }
+
+    
+section.other-furniture .new-product {
+    width: 100%;
+    margin-bottom: 24px;
+}
 }
