@@ -36,11 +36,11 @@ b, .bold, h1, strong, .buy-button {
     font-weight: normal !important;
 }
 
-article, .testimonial, .dynamic-product-list, footer, aside, nav span, .new-product {
+article, .testimonial, .dynamic-product-list, footer, aside,.new-product {
     font-size: var(--font-size-small);
 }
 
-.testimonial h1, nav, .close, #close, .dynamic-product-list .title, .testimonials h1, .left-arrow, .right-arrow, aside h1, .buy-button, .other-furniture h1 {
+.testimonial h1, nav iconify-icon, .close, #close, .dynamic-product-list .title, .testimonials h1, .left-arrow, .right-arrow, aside h1, .buy-button, .other-furniture h1 {
     font-size: var(--font-size-medium);
 }
 
@@ -87,7 +87,7 @@ footer a > iconify-icon {
     }
 }
 
-@media(hover: hover) {
+@media(hover: hover ) and (pointer: fine) {
     header .dynamic-product-list .wrapper:hover,  
     header nav:hover,
     section.testimonials .testimonial:hover .page1 ,
@@ -115,6 +115,5 @@ footer a > iconify-icon {
     .dyn-list-product:hover {
         color: var(--selected-gray);
         filter: brightness(1.2);
-
     }
 }

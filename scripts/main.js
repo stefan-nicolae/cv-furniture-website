@@ -33,12 +33,14 @@ document.onmousemove = e => {
         // dynamicProductListWrapper.classList.remove("selected")
         cursorOutsideProductList = true
     }
+    console.log(cursorOutsideProductList)
 }
 
 document.onclick = e => {
-    if(cursorOutsideProductList) 
+    if(cursorOutsideProductList)  {
         dynamicProductList.style.display = "none"
         document.querySelector("article").style.paddingTop = articleTopPadding + "px"
+    }
 }
 
 document.querySelector(".dynamic-product-list .close")

@@ -32,8 +32,19 @@ export function activateSlider(slider, leftArrow, rightArrow, getScrollWidth=()=
         const X = e.layerX !== undefined ? e.layerX : e.changedTouches[0].clientX
         const Y = e.layerY !== undefined ? e.layerY : e.changedTouches[0].clientY
         let cursorX = X - index*scrollWidth
-        if(cursorX < 0) cursorX += slider.clientWidth * index
-        const cursorY = e.currentTarget.clientHeight - Y
+
+        //if PC
+        if(e.layerX !== undefined) {
+            if(cursorX < 0) cursorX += slider.clientWidth * index
+        } else {
+            cursorX += slider.clientWidth * index
+        }
+
+
+
+        let top = slider.getBoundingClientRect().top
+        if(e.layerY !== undefined) top = 0
+        const cursorY = e.currentTarget.clientHeight - Y + top 
         return [cursorX, cursorY]
     }
 
@@ -152,7 +163,7 @@ export function activateSlider(slider, leftArrow, rightArrow, getScrollWidth=()=
             if(BIG_IMAGE && BIG_IMAGE.style.display !== "none") return
             const x = X - slider.offsetLeft
             let multiplier = 1
-            if(window.innerWidth <= 600) {
+            if(window.innerWidth <= 1000) {
                 multiplier = 0.1
             }
             if(snap) multiplier = 2

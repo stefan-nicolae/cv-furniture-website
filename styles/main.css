@@ -436,7 +436,7 @@ section.testimonials .testimonial .page2-content-back span {
     }
 
     header .round-header-button img {
-        width: 8vw;
+        width: 10vw;
     }
 
     header #butterfly img {
@@ -461,7 +461,7 @@ section.testimonials .testimonial .page2-content-back span {
     }
 }
 
-@media(hover: hover) {
+@media(hover: hover)  and (pointer: fine) {
     header .round-header-button img:hover {
         transform: rotate(360deg);
         transition: ease-in 0.5s;

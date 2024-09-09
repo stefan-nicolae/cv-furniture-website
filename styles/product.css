@@ -54,6 +54,7 @@ main section {
     position: relative;
     cursor: grab;
     user-select: none;
+    overflow: hidden;
 }
 
 main section .slideshow {
